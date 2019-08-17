@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Angular-Project": {
+    "mean-course": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Angular-Project",
+            "outputPath": "dist/mean-course",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -58,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Angular-Project:build"
+            "browserTarget": "mean-course:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Angular-Project:build:production"
+              "browserTarget": "mean-course:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Angular-Project:build"
+            "browserTarget": "mean-course:build"
           }
         },
         "test": {
@@ -84,6 +85,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -106,15 +108,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Angular-Project:serve"
+            "devServerTarget": "mean-course:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Angular-Project:serve:production"
+              "devServerTarget": "mean-course:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "Angular-Project"
+    }
+  },
+  "defaultProject": "mean-course"
 }
