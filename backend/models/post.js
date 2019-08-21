@@ -16,7 +16,15 @@ const postSchema = mongoose.Schema({
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref:"User",
+    ref: "User",
+    required: true
+  },
+  userName: {
+    type: String,
+    required: true
+  },
+  postDate: {
+    type: Date,
     required: true
   }
 });

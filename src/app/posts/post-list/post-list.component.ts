@@ -6,17 +6,15 @@ import { PostsService } from '../posts.service';
 import { PageEvent } from '@angular/material';
 import { AuthService } from 'src/app/auth/auth.service';
 
+
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
+
 export class PostListComponent implements OnInit, OnDestroy {
-  // posts = [
-  //   { title: "First Post", content: "This is the first post's content" },
-  //   { title: "Second Post", content: "This is the second post's content" },
-  //   { title: "Third Post", content: "This is the third post's content" }
-  // ];
+
   posts: Post[] = [];
   isLoading = false;
   totoalPosts = 0;
@@ -25,6 +23,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   pageSizeOptions = [1, 2, 5, 10];
   userIsAuth = false;
   userId: string;
+  zivStirng: string;
   private postsSub: Subscription;
   private authStateusSub: Subscription;
 

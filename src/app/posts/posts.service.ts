@@ -29,13 +29,16 @@ export class PostsService {
               content: post.content,
               id: post._id,
               imagePath: post.imagePath,
-              creator: post.creator
+              creator: post.creator,
+              userName: post.userName,
+              postDate: post.postDate,
             };
           }),
           maxPosts: postDate.maxPosts
         };
       }))
       .subscribe(transformPosts => {
+        console.log(transformPosts);
         this.posts = transformPosts.posts;
         this.postsUpdated.next({ posts: [...this.posts], postCount: transformPosts.maxPosts });
       });

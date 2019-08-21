@@ -59,6 +59,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             imagePath: postData.imagePath,
             creator: postData.creator
           };
+          console.log('the creator is ' + this.post.creator);
+
           this.form.setValue({
             title: this.post.title,
             content: this.post.content,
