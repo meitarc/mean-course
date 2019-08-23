@@ -7,6 +7,7 @@ import { CommentListComponent } from './comments/comment-list/comment-list.compo
 import { CommentCreateComponent } from './comments/comment-create/comment-create.component';
 
 import { AuthGuard } from './auth/auth.guard';
+import { MapComponent } from './map/map-google/map.component';
 
 const routes: Routes = [
   { path: '', component: PostListComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'comments/create', component: CommentCreateComponent, canActivate: [AuthGuard] },
   { path: 'comments/edit/:commentId', component: CommentCreateComponent, canActivate: [AuthGuard] },
 
-  { path: 'auth', loadChildren: './auth/auth.module#AuthModule'}
+  { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
+  { path: 'map', component: MapComponent },
 ];
 
 @NgModule({
