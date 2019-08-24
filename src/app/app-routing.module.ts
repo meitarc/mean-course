@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
   { path: 'edit/:postId', component: PostCreateComponent, canActivate: [AuthGuard] },
 
-  { path: 'commentsList', component: CommentListComponent },
+  { path: 'comments/list/:postid', component: CommentListComponent },
   { path: 'comments/create/:postid', component: CommentCreateComponent, canActivate: [AuthGuard] },
   { path: 'comments/edit/:commentId', component: CommentCreateComponent, canActivate: [AuthGuard] },
 

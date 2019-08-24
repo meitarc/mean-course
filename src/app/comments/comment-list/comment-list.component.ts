@@ -5,6 +5,7 @@ import { Comment } from '../comment.model';
 import { CommentsService } from '../comments.service';
 import { PageEvent } from '@angular/material';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 
 @Component({
@@ -16,6 +17,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class CommentListComponent implements OnInit, OnDestroy {
 
   comments: Comment[] = [];
+  commentsOfPost: Comment[] = [];
+
   isLoading = false;
   totoalComments = 0;
   commentsPerPage = 5;
@@ -26,8 +29,9 @@ export class CommentListComponent implements OnInit, OnDestroy {
   zivStirng: string;
   private commentsSub: Subscription;
   private authStateusSub: Subscription;
+  postId: string;
 
-  constructor(public commentsService: CommentsService, private authService: AuthService) { }
+  constructor(public commentsService: CommentsService, public route: ActivatedRoute, private authService: AuthService) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -46,6 +50,23 @@ export class CommentListComponent implements OnInit, OnDestroy {
         this.userIsAuth = isAuthenticated;
         this.userId = this.authService.getUserId();
       });
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+
+      this.postId = paramMap.get('postid');
+      console.log(this.postId);
+    });
+    this.commentsService.getComments(this.commentsPerPage, this.currentPage);
+
+  }
+
+  loadComments() {
+    console.log('the com: ' + this.comments);
+    for ( const c of this.comments ) {
+      if ( c.postId == this.postId ) {
+        this.commentsOfPost.push(c);
+      }
+    }
+    this.comments = this.commentsOfPost;
   }
 
   onChangePage(pageData: PageEvent) {
