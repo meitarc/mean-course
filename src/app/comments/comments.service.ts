@@ -28,7 +28,6 @@ export class CommentsService {
               title: comment.title,
               content: comment.content,
               id: comment._id,
-              imagePath: comment.imagePath,
               creator: comment.creator,
               userName: comment.userName,
               commentDate: comment.commentDate,
@@ -49,16 +48,18 @@ export class CommentsService {
   }
 
   getComment(id: string) {
-    return this.http.get<{ _id: string, title: string, content: string, imagePath: string , creator: string}>(
+    return this.http.get<{ _id: string, title: string, content: string, creator: string}>(
       BACKEND_URL + id
     );
   }
 
-  addComment(title: string, content: string, image: File) {
+  addComment(postId: string, title: string, content: string) {
     const commentDate = new FormData();
+    commentDate.append('postId', postId);
     commentDate.append('title', title);
     commentDate.append('content', content);
-    commentDate.append('image', image, title);
+    console.log(title);
+
     this.http
       .post<{ message: string, comment: Comment }>(
         BACKEND_URL,
@@ -69,17 +70,12 @@ export class CommentsService {
       });
   }
 
-  updateComment(id: string, title: string, content: string, image: File | string) {
+  updateComment(id: string, title: string, content: string) {
     let commentDate: Comment | FormData;
-    if (typeof (image) === 'object') {
-      commentDate = new FormData();
-      commentDate.append('id', id);
-      commentDate.append('title', title);
-      commentDate.append('content', content);
-      commentDate.append('image', image, title);
-    } else {
-      commentDate = { id, title, content, imagePath: image, creator: null };
-    }
+
+    commentDate = { id, title, content, creator: null};
+
+
     this.http
       .put(BACKEND_URL +  id, commentDate)
       .subscribe(response => {

@@ -4,9 +4,9 @@ exports.createComment = (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   //today = new Date();
   const comment = new Comment({
+    postId: req.body.postId,
     title: req.body.title,
     content: req.body.content,
-    imagePath: url + "/images/" + req.file.filename,
     creator: req.userData.userId,
     userName: req.userData.email.split('@')[0],
     commentDate: new Date().toLocaleString()
@@ -28,20 +28,19 @@ exports.createComment = (req, res, next) => {
 };
 
 exports.updateComment = (req, res, next) => {
-  let imagePath = req.body.imagePath;
   if (req.file) {
     const url = req.protocol + "://" + req.get("host");
-    imagePath = url + "/images/" + req.file.filename;
   }
   const comment = new Comment({
+    postId: req.body.postId,
     _id: req.body.id,
     title: req.body.title,
     content: req.body.content,
-    imagePath: imagePath,
     creator: req.userData.userId,
     userName: req.userData.email.split('@')[0],
   });
   Comment.updateOne({
+    postId: req.body.postId,
       _id: req.params.id,
       creator: req.userData.userId
     }, comment).then(result => {

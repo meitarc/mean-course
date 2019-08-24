@@ -8,9 +8,7 @@
       Commented By: {{ comment.userName }} ,On: {{ comment.commentDate }}
     </mat-panel-description>
     <p>{{ comment.content }}</p>
-    <div class="comment-image">
-      <img [src]="comment.imagePath" [alt]="comment.title">
-    </div>
+
     <mat-action-row *ngIf="userIsAuth && userId == comment.creator">
       <a mat-button color="primary" [routerLink]="['/comments/edit', comment.id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(comment.id)">DELETE</button>
