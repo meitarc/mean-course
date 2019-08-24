@@ -26,6 +26,9 @@ export class PostListComponent implements OnInit, OnDestroy {
   zivStirng: string;
   private postsSub: Subscription;
   private authStateusSub: Subscription;
+  searchTermByTitle: String;
+  searchTermByContent: String;
+  searchTermByimage: boolean = false;
 
   constructor(public postsService: PostsService, private authService: AuthService) { }
 
