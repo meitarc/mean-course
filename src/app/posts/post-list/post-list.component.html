@@ -15,6 +15,8 @@
       <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
     </mat-action-row>
+    <a mat-button color="primary" [routerLink]="['comments/create/', post.id]">COMMENT</a>
+
   </mat-expansion-panel>
 </mat-accordion>
 <mat-paginator [length]="totoalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions"

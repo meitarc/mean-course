@@ -20,10 +20,10 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
   comment: Comment;
   isLoading = false;
   form: FormGroup;
-  imagePreview: string;
   private mode = 'create';
   private commentId: string;
   private authStatusSub: Subscription;
+  private postId: string;
 
   constructor(
     public commentsService: CommentsService,
@@ -39,11 +39,7 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)]
       }),
-      content: new FormControl(null, { validators: [Validators.required] }),
-      image: new FormControl(null, {
-        validators: [Validators.required],
-        asyncValidators: [mimeType]
-      })
+      content: new FormControl(null, { validators: [Validators.required] })
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('commentId')) {
@@ -56,7 +52,6 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
             id: commentData._id,
             title: commentData.title,
             content: commentData.content,
-            imagePath: commentData.imagePath,
             creator: commentData.creator
           };
           console.log('the creator is ' + this.comment.creator);
@@ -64,26 +59,16 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
           this.form.setValue({
             title: this.comment.title,
             content: this.comment.content,
-            image: this.comment.imagePath
           });
         });
       } else {
         this.mode = 'create';
         this.commentId = null;
+        this.postId = paramMap.get('postid');
       }
     });
   }
 
-  onImagePicked(event: Event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    this.form.patchValue({ image: file });
-    this.form.get('image').updateValueAndValidity();
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imagePreview = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-  }
 
   onSaveComment() {
     if (this.form.invalid) {
@@ -91,17 +76,17 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
     if (this.mode === 'create') {
+      console.log(this.postId);
       this.commentsService.addComment(
+        this.postId,
         this.form.value.title,
         this.form.value.content,
-        this.form.value.image
       );
     } else {
       this.commentsService.updateComment(
         this.commentId,
         this.form.value.title,
-        this.form.value.content,
-        this.form.value.image
+        this.form.value.content
       );
     }
     this.form.reset();

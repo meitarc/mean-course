@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
 
 const commentSchema = mongoose.Schema({
+  postId:{
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Post",
+    required: true
+  },
   title: {
     type: String,
     required: true
   },
   content: {
-    type: String,
-    required: true
-  },
-  imagePath: {
     type: String,
     required: true
   },
