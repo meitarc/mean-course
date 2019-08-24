@@ -4,4 +4,5 @@ export interface Comment {
   title: string;
   content: string;
   creator: string;
+  postId: string;
 }

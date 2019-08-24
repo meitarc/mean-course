@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post("", checkAuth, extractFile, CommentController.createComment);
 
-router.put("/:id",checkAuth, extractFile, CommentController.updateComment);
+router.put("/:id",checkAuth , CommentController.updateComment);
 
 router.get("", CommentController.getComments);
 

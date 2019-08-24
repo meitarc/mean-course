@@ -52,7 +52,8 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
             id: commentData._id,
             title: commentData.title,
             content: commentData.content,
-            creator: commentData.creator
+            creator: commentData.creator,
+            postId: commentData.postId
           };
           console.log('the creator is ' + this.comment.creator);
 
@@ -75,8 +76,9 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
       return;
     }
     this.isLoading = true;
+    console.log(this.postId + ' kkkkk');
+
     if (this.mode === 'create') {
-      console.log(this.postId);
       this.commentsService.addComment(
         this.postId,
         this.form.value.title,
@@ -86,7 +88,8 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
       this.commentsService.updateComment(
         this.commentId,
         this.form.value.title,
-        this.form.value.content
+        this.form.value.content,
+        null
       );
     }
     this.form.reset();
