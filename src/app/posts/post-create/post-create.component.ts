@@ -40,11 +40,12 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         validators: [Validators.required, Validators.minLength(3)]
       }),
       content: new FormControl(null, { validators: [Validators.required] }),
-      image: new FormControl(null, {
+      image: new FormControl('null', {
         validators: [Validators.required],
         asyncValidators: [mimeType]
       })
     });
+
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
@@ -61,6 +62,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
           };
           console.log('the creator is ' + this.post.creator);
 
+          this.form.setValue({image: ''});
           this.form.setValue({
             title: this.post.title,
             content: this.post.content,
@@ -86,9 +88,11 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   }
 
   onSavePost() {
+
     if (this.form.invalid) {
       return;
     }
+
     this.isLoading = true;
     if (this.mode === 'create') {
       this.postsService.addPost(

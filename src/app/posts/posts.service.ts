@@ -59,6 +59,7 @@ export class PostsService {
     postDate.append('title', title);
     postDate.append('content', content);
     postDate.append('image', image, title);
+
     this.http
       .post<{ message: string, post: Post }>(
         BACKEND_URL,
