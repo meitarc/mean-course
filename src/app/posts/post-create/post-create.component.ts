@@ -88,12 +88,12 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   }
 
   onSavePost() {
-    // if (this.form.invalid) {
-    //  return;
-    // }
-    this.isLoading = true;
-    if (this.mode === 'create') {
-      console.log('stat1: ' + this.form.value.image);
+     if (this.form.value.title == null || this.form.value.content == null ||
+       this.form.value.title === '' || this.form.value.content === '') {
+      return;
+     }
+     this.isLoading = true;
+     if (this.mode === 'create') {
 
       this.postsService.addPost(
         this.form.value.title,
@@ -101,17 +101,17 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         this.form.value.image,
         this.addImag
       );
-      console.log('stat2: ' + this.form.value.image);
 
     } else {
       this.postsService.updatePost(
         this.postId,
         this.form.value.title,
         this.form.value.content,
-        this.form.value.image
+        this.form.value.image,
+        this.addImag
       );
     }
-    this.form.reset();
+     this.form.reset();
   }
 
   ngOnDestroy(): void {

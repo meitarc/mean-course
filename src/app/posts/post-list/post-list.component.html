@@ -14,7 +14,7 @@
       Posted By: {{ post.userName }} ,On: {{ post.postDate }}
     </mat-panel-description>
     <p>{{ post.content }}</p>
-    <div class="post-image">
+    <div class="post-image" *ngIf="post.imagePath!=null">
       <img [src]="post.imagePath" [alt]="post.title">
     </div>
     <mat-action-row>

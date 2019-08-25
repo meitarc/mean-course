@@ -55,28 +55,13 @@ export class PostsService {
   }
 
   addPost(title: string, content: string, image: File, addImage: boolean) {
-    console.log('add1');
-
     const postDate = new FormData();
-    console.log('add2');
-
     postDate.append('title', title);
-    console.log('add3');
-
     postDate.append('content', content);
-    console.log('add4');
-
     if (addImage) {
-      console.log('add5');
-
       postDate.append('image', image, title);
-      console.log('obbbb');
     } else {
-      console.log('add6');
-
       postDate.append('image', null);
-      console.log('notttobbbb');
-
     }
     this.http
       .post<{ message: string, post: Post }>(
@@ -88,15 +73,30 @@ export class PostsService {
       });
   }
 
-  updatePost(id: string, title: string, content: string, image: File | string) {
+  updatePost(id: string, title: string, content: string, image: File | string, addImage: boolean) {
     let postDate: Post | FormData;
     if (typeof (image) === 'object') {
       postDate = new FormData();
       postDate.append('id', id);
       postDate.append('title', title);
       postDate.append('content', content);
-      postDate.append('image', image, title);
+
+      if (addImage) {
+        postDate.append('image', image, title);
+      } else {
+        postDate.append('image', null);
+      }
+
     } else {
+
+      if (addImage) {
+        postDate = { id, title, content, imagePath: image, creator: null };
+
+      } else {
+        postDate = { id, title, content, imagePath: null, creator: null };
+
+      }
+
       postDate = { id, title, content, imagePath: image, creator: null };
     }
     this.http
