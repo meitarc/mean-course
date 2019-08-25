@@ -24,3 +24,9 @@ mat-paginator{
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
+
+form-control {
+  width: 300px;
+  border: 2px groove;
+  border-radius: 4px; 
+}

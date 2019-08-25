@@ -1,8 +1,11 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search By Title" [(ngModel)]="searchTermByTitle"/>
+    <input type="text" class="form-control" placeholder="Search By Content" [(ngModel)]="searchTermByContent"/>
+</div>
 <mat-accordion multi="true" *ngIf="commentsOfPost.length > 0 && !isLoading">
 
-  <mat-expansion-panel *ngFor="let comment of commentsOfPost.slice().reverse()">
+  <mat-expansion-panel *ngFor="let comment of commentsOfPost.slice().reverse() | commentTitleFilter:searchTermByTitle | commentContentFilter:searchTermByContent">
 
       <mat-expansion-panel-header>
         {{ comment.title }}

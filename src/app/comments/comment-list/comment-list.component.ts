@@ -30,6 +30,8 @@ export class CommentListComponent implements OnInit, OnDestroy {
   private commentsSub: Subscription;
   private authStateusSub: Subscription;
   postId: string;
+  searchTermByTitle: String;
+  searchTermByContent: String;
 
   firstTime = true;
   constructor(public commentsService: CommentsService, public route: ActivatedRoute, private authService: AuthService) {}
