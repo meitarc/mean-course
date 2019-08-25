@@ -24,7 +24,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   private mode = 'create';
   private postId: string;
   private authStatusSub: Subscription;
-
+  addImag = false;
   constructor(
     public postsService: PostsService,
     public route: ActivatedRoute,
@@ -40,7 +40,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         validators: [Validators.required, Validators.minLength(3)]
       }),
       content: new FormControl(null, { validators: [Validators.required] }),
-      image: new FormControl('null', {
+      image: new FormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeType]
       })
@@ -62,7 +62,6 @@ export class PostCreateComponent implements OnInit, OnDestroy {
           };
           console.log('the creator is ' + this.post.creator);
 
-          this.form.setValue({image: ''});
           this.form.setValue({
             title: this.post.title,
             content: this.post.content,
@@ -85,21 +84,25 @@ export class PostCreateComponent implements OnInit, OnDestroy {
       this.imagePreview = reader.result as string;
     };
     reader.readAsDataURL(file);
+    this.addImag = true;
   }
 
   onSavePost() {
-
-    if (this.form.invalid) {
-      return;
-    }
-
+    // if (this.form.invalid) {
+    //  return;
+    // }
     this.isLoading = true;
     if (this.mode === 'create') {
+      console.log('stat1: ' + this.form.value.image);
+
       this.postsService.addPost(
         this.form.value.title,
         this.form.value.content,
-        this.form.value.image
+        this.form.value.image,
+        this.addImag
       );
+      console.log('stat2: ' + this.form.value.image);
+
     } else {
       this.postsService.updatePost(
         this.postId,

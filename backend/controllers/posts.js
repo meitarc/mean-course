@@ -3,18 +3,17 @@ const Post = require("../models/post");
 exports.createPost = (req, res, next) => {
 
   const url = req.protocol + "://" + req.get("host");
-  console.log(req.file);
 
-  if(req.file==='null'){
-      imagPath= url + "/images/.jpg"
-    }else{
-    imagPath=url + "/images/" + req.file.filename;
+  today = new Date();
+  img=null
+  if(!(req.file==null)){
+      img= url + "/images/" + req.file.filename
   }
-  //today = new Date();
+
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
-    imagePath: imagPath,
+    imagePath: img,
     //imagePath: url + "/images/" + req.file.filename,
     creator: req.userData.userId,
     userName: req.userData.email.split('@')[0],
