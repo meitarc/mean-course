@@ -31,6 +31,7 @@ export class CommentListComponent implements OnInit, OnDestroy {
   private authStateusSub: Subscription;
   postId: string;
 
+  firstTime = true;
   constructor(public commentsService: CommentsService, public route: ActivatedRoute, private authService: AuthService) {}
 
   ngOnInit() {
@@ -42,6 +43,7 @@ export class CommentListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.totoalComments = commentData.commentCount;
         this.comments = commentData.comments;
+        this.loadComments();
       });
     this.userIsAuth = this.authService.getIsAuth();
     this.authStateusSub = this.authService
@@ -53,20 +55,25 @@ export class CommentListComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
 
       this.postId = paramMap.get('postid');
-      console.log(this.postId);
     });
-    this.commentsService.getComments(this.commentsPerPage, this.currentPage);
-
   }
 
   loadComments() {
-    console.log('the com: ' + this.comments);
+    let bool = false;
+    this.commentsService.getComments(this.commentsPerPage, this.currentPage);
     for ( const c of this.comments ) {
-      if ( c.postId == this.postId ) {
-        this.commentsOfPost.push(c);
+      if ( c.postId === this.postId ) {
+        for (const c2 of this.commentsOfPost) {
+          if (c2.id === c.id) {
+            bool = true;
+          }
+        }
+        if (!bool) {
+          this.commentsOfPost.push(c);
+        }
+        bool = false;
       }
     }
-    this.comments = this.commentsOfPost;
   }
 
   onChangePage(pageData: PageEvent) {
@@ -81,10 +88,17 @@ export class CommentListComponent implements OnInit, OnDestroy {
     this.commentsService.deleteComment(commentId).subscribe(() => {
       this.commentsService.getComments(this.commentsPerPage, this.currentPage);
     });
+
+    this.commentsOfPost = [];
+    this.loadComments();
+    window.location.reload();
+
   }
 
   ngOnDestroy() {
     this.commentsSub.unsubscribe();
     this.authStateusSub.unsubscribe();
+    this.commentsOfPost = [];
+
   }
 }

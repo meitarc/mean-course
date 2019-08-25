@@ -31,13 +31,13 @@ export class CommentsService {
               creator: comment.creator,
               userName: comment.userName,
               commentDate: comment.commentDate,
+              postId: comment.postId
             };
           }),
           maxComments: commentDate.maxComments
         };
       }))
       .subscribe(transformComments => {
-        console.log(transformComments);
         this.comments = transformComments.comments;
         this.commentsUpdated.next({ comments: [...this.comments], commentCount: transformComments.maxComments });
       });
@@ -58,7 +58,6 @@ export class CommentsService {
     commentDate.append('postId', postId);
     commentDate.append('title', title);
     commentDate.append('content', content);
-    console.log(title);
 
     this.http
       .post<{ message: string, comment: Comment }>(
@@ -71,12 +70,10 @@ export class CommentsService {
   }
 
   updateComment(id: string, title: string, content: string, postId: string) {
-    console.log('updateee');
     let commentDate: Comment | FormData;
     commentDate = new FormData();
 
     commentDate = { id, title, content, creator: null, postId: null};
-    console.log(commentDate);
 
     this.http
       .put(BACKEND_URL +  id, commentDate)

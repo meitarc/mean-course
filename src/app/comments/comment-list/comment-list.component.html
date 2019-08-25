@@ -1,8 +1,8 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
-<!-- <div *ngIf= "loadComments()"></div> -->
-<mat-accordion multi="true" *ngIf="comments.length > 0 && !isLoading">
-  <mat-expansion-panel *ngFor="let comment of comments.slice().reverse()">
+<mat-accordion multi="true" *ngIf="commentsOfPost.length > 0 && !isLoading">
+
+  <mat-expansion-panel *ngFor="let comment of commentsOfPost.slice().reverse()">
 
       <mat-expansion-panel-header>
         {{ comment.title }}
@@ -19,6 +19,6 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-<mat-paginator [length]="totoalComments" [pageSize]="commentsPerPage" [pageSizeOptions]="pageSizeOptions"
-  (page)="onChangePage($event)" *ngIf="comments.length > 0"></mat-paginator>
-<p class="info-text mat-body-1" *ngIf="comments.length <= 0 && !isLoading">No comments added yet!</p>
+<!--<mat-paginator [length]="totoalComments" [pageSize]="commentsPerPage" [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangePage($event)" *ngIf="commentsOfPost.length > 0"></mat-paginator>-->
+<p class="info-text mat-body-1" *ngIf="commentsOfPost.length <= 0 && !isLoading">No comments added yet!</p>
