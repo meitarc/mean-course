@@ -56,11 +56,15 @@ export class PostsService {
     );
   }
 
-  addPost(title: string, content: string, image: File) {
+  addPost(title: string, content: string, image: File, addImage: boolean) {
     const postDate = new FormData();
     postDate.append('title', title);
     postDate.append('content', content);
-    postDate.append('image', image, title);
+    if (addImage) {
+      postDate.append('image', image, title);
+    } else {
+      postDate.append('image', null);
+    }
     this.http
       .post<{ message: string, post: Post }>(
         BACKEND_URL,
@@ -71,15 +75,30 @@ export class PostsService {
       });
   }
 
-  updatePost(id: string, title: string, content: string, image: File | string) {
+  updatePost(id: string, title: string, content: string, image: File | string, addImage: boolean) {
     let postDate: Post | FormData;
     if (typeof (image) === 'object') {
       postDate = new FormData();
       postDate.append('id', id);
       postDate.append('title', title);
       postDate.append('content', content);
-      postDate.append('image', image, title);
+
+      if (addImage) {
+        postDate.append('image', image, title);
+      } else {
+        postDate.append('image', null);
+      }
+
     } else {
+
+      if (addImage) {
+        postDate = { id, title, content, imagePath: image, creator: null };
+
+      } else {
+        postDate = { id, title, content, imagePath: null, creator: null };
+
+      }
+
       postDate = { id, title, content, imagePath: image, creator: null };
     }
     this.http

@@ -13,8 +13,10 @@ const commentsRoutes = require('./routes/comments');
 
 const app = express();
 
-
+// these lines of code are used to change between local and shared mongoDB.
+// localhost:27017
 mongoose.connect("mongodb+srv://Fox:"+ process.env.MONGO_ATLAS_PW +"@cluster0-ugkpd.mongodb.net/node-angular?retryWrites=true&w=majority")
+//mongoose.connect("mongodb://localhost:27017/tester")
 .then(()=>{
   console.log('Connected to database');
 }).catch(()=>{

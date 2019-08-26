@@ -26,7 +26,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   private mode = 'create';
   private postId: string;
   private authStatusSub: Subscription;
-
+  addImag = false;
   constructor(
     public postsService: PostsService,
     public route: ActivatedRoute,
@@ -47,6 +47,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         asyncValidators: [mimeType]
       })
     });
+
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
@@ -85,28 +86,34 @@ export class PostCreateComponent implements OnInit, OnDestroy {
       this.imagePreview = reader.result as string;
     };
     reader.readAsDataURL(file);
+    this.addImag = true;
   }
 
   onSavePost() {
-    if (this.form.invalid) {
+     if (this.form.value.title == null || this.form.value.content == null ||
+       this.form.value.title === '' || this.form.value.content === '') {
       return;
-    }
-    this.isLoading = true;
-    if (this.mode === 'create') {
+     }
+     this.isLoading = true;
+     if (this.mode === 'create') {
+
       this.postsService.addPost(
         this.form.value.title,
         this.form.value.content,
-        this.form.value.image
+        this.form.value.image,
+        this.addImag
       );
+
     } else {
       this.postsService.updatePost(
         this.postId,
         this.form.value.title,
         this.form.value.content,
-        this.form.value.image
+        this.form.value.image,
+        this.addImag
       );
     }
-    this.form.reset();
+     this.form.reset();
   }
 
   ngOnDestroy(): void {

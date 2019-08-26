@@ -21,7 +21,7 @@ export class CommentListComponent implements OnInit, OnDestroy {
 
   isLoading = false;
   totoalComments = 0;
-  commentsPerPage = 5;
+  commentsPerPage = 500;
   currentPage = 1;
   pageSizeOptions = [1, 2, 5, 10];
   userIsAuth = false;
