@@ -13,9 +13,6 @@ export class postImageFilterPipe implements PipeTransform {
 
       for (const post of posts) {
         if (post.imagePath != null) {
-          console.log('post to return ' + this.postsToReturn);
-          console.log(post);
-
           this.postsToReturn.push(post);
         }
       }
