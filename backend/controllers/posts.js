@@ -12,14 +12,14 @@ exports.createPost = (req, res, next) => {
     postDate: new Date().toLocaleString()
   });
   post.save().then(createdPost => {
-      res.status(201).json({
-        message: "Post added successfully",
-        post: {
-          ...createdPost,
-          id: createdPost._id
-        }
-      });
-    })
+    res.status(201).json({
+      message: "Post added successfully",
+      post: {
+        ...createdPost,
+        id: createdPost._id
+      }
+    });
+  })
     .catch(error => {
       res.status(500).json({
         message: "Creating a post failed!"
@@ -42,19 +42,19 @@ exports.updatePost = (req, res, next) => {
     userName: req.userData.email.split('@')[0],
   });
   Post.updateOne({
-      _id: req.params.id,
-      creator: req.userData.userId
-    }, post).then(result => {
-      if (result.n > 0) {
-        res.status(200).json({
-          message: "Update successful!"
-        });
-      } else {
-        res.status(401).json({
-          message: "Not authorized!"
-        });
-      }
-    })
+    _id: req.params.id,
+    creator: req.userData.userId
+  }, post).then(result => {
+    if (result.n > 0) {
+      res.status(200).json({
+        message: "Update successful!"
+      });
+    } else {
+      res.status(401).json({
+        message: "Not authorized!"
+      });
+    }
+  })
     .catch(error => {
       res.status(500).json({
         message: "Couldn't update post!"
@@ -70,6 +70,7 @@ exports.getPosts = (req, res, next) => {
   if (pageSize && currentPage) {
     postQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
   }
+
   postQuery
     .then(documents => {
       fetchedPosts = documents;
@@ -124,3 +125,11 @@ exports.deletePost = (req, res, next) => {
     });
   });
 };
+
+exports.getpostTitleD3 = (req, res, next) => {
+  Post.aggregate([
+    { "$group": { _id: "$title", count: { $sum: 1 } } }
+  ]).then(docs => {
+    return res.status(200).json({ docs });
+  })
+}

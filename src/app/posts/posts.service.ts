@@ -15,7 +15,9 @@ export class PostsService {
   private postsUpdated = new Subject<{ posts: Post[], postCount: number }>();
 
   constructor(private http: HttpClient, private router: Router) { }
-
+  getAllPosts(){
+    return this.posts;
+  }
   getPosts(postsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
     this.http.get<{ message: string, posts: any, maxPosts: number }>(
@@ -49,7 +51,7 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ _id: string, title: string, content: string, imagePath: string , creator: string}>(
+    return this.http.get<{ _id: string, title: string, content: string, imagePath: string, creator: string }>(
       BACKEND_URL + id
     );
   }
@@ -81,13 +83,16 @@ export class PostsService {
       postDate = { id, title, content, imagePath: image, creator: null };
     }
     this.http
-      .put(BACKEND_URL +  id, postDate)
+      .put(BACKEND_URL + id, postDate)
       .subscribe(response => {
         this.router.navigate(['/']);
       });
   }
 
   deletePost(postId: string) {
-    return this.http.delete(BACKEND_URL +  postId);
+    return this.http.delete(BACKEND_URL + postId);
+  }
+  getTitlesD3() {
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + "d3");
   }
 }

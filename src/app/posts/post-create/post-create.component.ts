@@ -8,6 +8,8 @@ import { mimeType } from './mime-type.validator';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
+
+
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',

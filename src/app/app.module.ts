@@ -15,12 +15,17 @@ import { CommentsModule } from './comments/comments.module';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
 import { MapMdoule } from './map/map.mdoule';
+import { PiechartDirective } from './d3-graph/piechart.directive';
+import { Postd3Component } from './postd3/postd3.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ErrorComponent,
+    PiechartDirective,
+    Postd3Component
   ],
   imports: [
     BrowserModule,
