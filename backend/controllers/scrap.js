@@ -8,8 +8,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://Fox:"+ 'Wb6CZi82Z8t5u9dO' +"@cluster0-ugkpd.mongodb.net/node-angular?retryWrites=true&w=majority")
-// mongoose.connect("mongodb://localhost:27017/tester")
+//mongoose.connect("mongodb+srv://Fox:"+ 'Wb6CZi82Z8t5u9dO' +"@cluster0-ugkpd.mongodb.net/node-angular?retryWrites=true&w=majority")
+mongoose.connect("mongodb://localhost:27017/tester")
 .then(()=>{
   console.log('Connected to database');
 }).catch(()=>{
