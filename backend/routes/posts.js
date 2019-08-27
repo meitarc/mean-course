@@ -11,12 +11,13 @@ router.post("", checkAuth, extractFile, PostController.createPost);
 
 router.put("/:id", checkAuth, extractFile, PostController.updatePost);
 
+router.get("/d3title", PostController.getpostTitleD3);
+
 router.get("", PostController.getPosts);
 
 router.get("/:id", PostController.getPost);
 
 router.delete("/:id", checkAuth, PostController.deletePost);
 
-router.get("/d3", PostController.getpostTitleD3);
 
 module.exports = router;

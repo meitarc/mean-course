@@ -15,7 +15,7 @@ export class PostsService {
   private postsUpdated = new Subject<{ posts: Post[], postCount: number }>();
 
   constructor(private http: HttpClient, private router: Router) { }
-  getAllPosts(){
+  getAllPosts() {
     return this.posts;
   }
   getPosts(postsPerPage: number, currentPage: number) {
@@ -112,6 +112,6 @@ export class PostsService {
     return this.http.delete(BACKEND_URL + postId);
   }
   getTitlesD3() {
-    return this.http.get<{ docs: any[] }>(BACKEND_URL + "d3");
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'd3title');
   }
 }
