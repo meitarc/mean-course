@@ -28,7 +28,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   private authStateusSub: Subscription;
   searchTermByTitle: String;
   searchTermByContent: String;
-  searchTermByimage: boolean = false;
+  searchTermByimage: boolean = true;
 
   constructor(public postsService: PostsService, private authService: AuthService) { }
 

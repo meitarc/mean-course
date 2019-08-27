@@ -9,17 +9,11 @@ exports.createPost = (req, res, next) => {
   if(!(req.file==null)){
       img= url + "/images/" + req.file.filename;
   }
-  console.log("server poet: ");
-  console.log(req.body.longitude);
-  console.log("server poet: ");
-
-  console.log(req.body.latitude);
 
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
     imagePath: img,
-    //imagePath: url + "/images/" + req.file.filename,
     creator: req.userData.userId,
     userName: req.userData.email.split('@')[0],
     postDate: new Date().toLocaleString(),
@@ -44,11 +38,6 @@ exports.createPost = (req, res, next) => {
 
 exports.updatePost = (req, res, next) => {
 
-  console.log("serveraa poet: ");
-  console.log(req.body.longitude);
-  console.log("server aaapoet: ");
-
-  console.log(req.body.latitude);
   let imagePath = req.body.imagePath;
   if (req.file) {
     const url = req.protocol + "://" + req.get("host");

@@ -70,10 +70,6 @@ export class PostsService {
     }
     postDate.append('latitude', latitude);
     postDate.append('longitude', longitude);
-    console.log('add post');
-
-    console.log(typeof(latitude));
-    console.log(typeof(longitude));
 
     this.http
       .post<{ message: string, post: Post }>(
