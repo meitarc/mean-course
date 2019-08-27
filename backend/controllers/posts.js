@@ -140,4 +140,4 @@ exports.getpostTitleD3 = (req, res, next) => {
   ]).then(docs => {
     return res.status(200).json({ docs });
   })
-}
+};
