@@ -11,25 +11,19 @@ import { Post } from '../posts/post.model';
 
 export class Postd3Component implements OnInit {
 
-    //data:Post[] = [];
-    data = []
+    data = [];
     show = false;
-    
-    constructor(private postService: PostsService) {
-        
-     }
 
-    ngOnInit() {               
-        //this.data=this.postService.getAllPosts();
+    constructor(private postService: PostsService) {}
+
+    ngOnInit() {
         this.postService.getTitlesD3().subscribe(d => {
-            this.data = d.docs;
-            if (this.data.length == 0) {
+          this.data = d.docs;
+          if (this.data.length === 0) {
                 this.show = false;
-            }
-            else {
+            } else {
                 this.show = true;
             }
         });
-       
     }
 }

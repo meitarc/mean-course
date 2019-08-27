@@ -9,7 +9,7 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 export class PiechartDirective implements OnInit {
 
-    @Input() data: any[]
+    @Input() data: any[];
 
     private margin = { top: 20, right: 20, bottom: 30, left: 50 };
     private width: number;
@@ -33,7 +33,7 @@ export class PiechartDirective implements OnInit {
         this.initSvg();
         this.drawPie();
     }
-    
+
     private initSvg() {
 
         this.color = d3Scale.scaleOrdinal()
@@ -53,7 +53,7 @@ export class PiechartDirective implements OnInit {
         this.el.nativeElement.style.height = "500";
         this.el.nativeElement.style.width = "960";
       }
-    
+
       private drawPie() {
         let g = this.svg.selectAll('.arc')
           .data(this.pie(this.data))
@@ -64,7 +64,7 @@ export class PiechartDirective implements OnInit {
         g.append('text').attr('transform', (d: any) => 'translate(' + this.labelArc.centroid(d) + ')')
           .attr('dy', '.35em')
           .text((d: any) => (d.data._id + " " + d.data.count));
-    
+
       }
 
 

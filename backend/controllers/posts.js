@@ -139,7 +139,5 @@ exports.getpostTitleD3 = (req, res, next) => {
     { "$group": { _id: "$title", count: { $sum: 1 } } }
   ]).then(docs => {
     return res.status(200).json({ docs });
-  });
-}
-
-
+  })
+};

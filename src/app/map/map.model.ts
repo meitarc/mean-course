@@ -1,6 +1,6 @@
 export interface Marker {
   lat: number;
   lng: number;
-  label?: string;
+  label: string;
   draggable: boolean;
 }
