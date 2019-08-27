@@ -18,17 +18,17 @@ export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   isLoading = false;
   totoalPosts = 0;
-  postsPerPage = 5;
+  postsPerPage = 100;
   currentPage = 1;
-  pageSizeOptions = [1, 2, 5, 10];
+  pageSizeOptions = [1, 2, 5, 10, 50, 100];
   userIsAuth = false;
   userId: string;
   zivStirng: string;
   private postsSub: Subscription;
   private authStateusSub: Subscription;
-  searchTermByTitle: String;
-  searchTermByContent: String;
-  searchTermByimage: boolean = false;
+  searchTermByTitle: string;
+  searchTermByContent: string;
+  searchTermByimage = true;
 
   constructor(public postsService: PostsService, private authService: AuthService) { }
 

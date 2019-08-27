@@ -73,7 +73,7 @@ export class CommentsService {
     let commentDate: Comment | FormData;
     commentDate = new FormData();
 
-    commentDate = { id, title, content, creator: null, postId: null};
+    commentDate = { id, title, content, creator: null, postId: null, userName: null, commentDate: null};
 
     this.http
       .put(BACKEND_URL +  id, commentDate)

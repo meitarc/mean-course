@@ -5,4 +5,6 @@ export interface Comment {
   content: string;
   creator: string;
   postId: string;
+  userName: string;
+  commentDate: string;
 }

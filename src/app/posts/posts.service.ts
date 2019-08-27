@@ -72,10 +72,13 @@ export class PostsService {
     }
     postDate.append('latitude', latitude);
     postDate.append('longitude', longitude);
+<<<<<<< HEAD
     console.log('add post');
 
     console.log(typeof (latitude));
     console.log(typeof (longitude));
+=======
+>>>>>>> 4c1aa1ef3e6fde2b9af7606532bb6b42a4ab8526
 
     this.http
       .post<{ message: string, post: Post }>(
@@ -105,6 +108,7 @@ export class PostsService {
     } else {
 
       if (addImage) {
+<<<<<<< HEAD
         postDate = { id, title, content, imagePath: image, creator: null, latitude, longitude };
 
       } else {
@@ -113,6 +117,16 @@ export class PostsService {
       }
 
       postDate = { id, title, content, imagePath: image, creator: null, latitude, longitude };
+=======
+        postDate = { id, title, content, imagePath: image, creator: null, userName: null, postDate: null , latitude, longitude};
+
+      } else {
+        postDate = { id, title, content, imagePath: null, creator: null, userName: null, postDate: null , latitude, longitude};
+
+      }
+
+      postDate = { id, title, content, imagePath: image, creator: null, userName: null, postDate: null , latitude, longitude};
+>>>>>>> 4c1aa1ef3e6fde2b9af7606532bb6b42a4ab8526
     }
 
     this.http

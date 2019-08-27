@@ -3,7 +3,8 @@
   <input type="text" class="form-control" placeholder="Search By Title" [(ngModel)]="searchTermByTitle"/>
   <input type="text" class="form-control" placeholder="Search By Content" [(ngModel)]="searchTermByContent"/>
 </div>
-<mat-checkbox (click)="searchTermByimage = !searchTermByimage" checked="checked">include picture</mat-checkbox>
+
+<mat-checkbox (click)="searchTermByimage = !searchTermByimage">include picture</mat-checkbox>
 
 <mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
   <mat-expansion-panel *ngFor="let post of posts.slice().reverse() | PostTitleFilter:searchTermByTitle | postContentFilter:searchTermByContent|postImageFilter:searchTermByimage">
