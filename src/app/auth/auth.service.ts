@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 const BACKEND_URL = environment.apiUrl + '/user/';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    
+
   private isAuthenticated = false;
   private token: string;
   private tokenTimer: any;
@@ -130,4 +130,7 @@ export class AuthService {
     };
   }
 
+  getcountries() {
+    return this.http.get<{ countries: any[] }>(BACKEND_URL + 'countries');
+  }
 }

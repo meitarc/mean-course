@@ -5,9 +5,6 @@ import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 import { Marker } from '../map.model';
 
-
-
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -21,17 +18,37 @@ export class MapComponent implements OnInit {
   public lng: number;
   public selectedAddress: PlaceResult;
   public country: [2];
-  public markers: Marker[];
+  public markers: Marker[] = [];
   public locations: any;
 
   constructor(private userCountry: AuthService, private router: Router) {
   }
 
   ngOnInit() {
-
+    // tslint:disable-next-line: variable-name
+    const other_array: any[] = [];
     this.lat = 51.678418;
     this.lng = 7.809007;
 
+    console.log('start grab from data base');
+
+    this.userCountry.getcountries().subscribe(d => {
+      // tslint:disable-next-line: only-arrow-functions
+      d.countries.forEach(function(object) {
+        // tslint:disable-next-line: prefer-const
+        let mark: Marker = { lat: object.lat, lng: object.lng, label: object.label, draggable: object.draggable };
+        other_array.push(mark);
+      });
+    });
+    this.markers = other_array;
+  }
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`);
+  }
+
+}
+
+/*
     this.markers = [
       {
         lat: 51.673858,
@@ -52,10 +69,4 @@ export class MapComponent implements OnInit {
         draggable: true
       }
     ];
-  }
-  clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`);
-  }
-
-
-}
+    */
