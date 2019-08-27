@@ -53,7 +53,9 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
             title: commentData.title,
             content: commentData.content,
             creator: commentData.creator,
-            postId: commentData.postId
+            postId: commentData.postId,
+            userName: null,
+            commentDate: null
           };
           console.log('the creator is ' + this.comment.creator);
 
