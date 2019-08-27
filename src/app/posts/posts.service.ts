@@ -44,7 +44,6 @@ export class PostsService {
         };
       }))
       .subscribe(transformPosts => {
-        console.log(transformPosts);
         this.posts = transformPosts.posts;
         this.postsUpdated.next({ posts: [...this.posts], postCount: transformPosts.maxPosts });
       });
@@ -126,8 +125,6 @@ export class PostsService {
   }
 
   newGetAll() {
-    console.log('newGetAll');
-    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'ziv');
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'maps');
   }
-
 }

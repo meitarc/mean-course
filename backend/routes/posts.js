@@ -13,7 +13,7 @@ router.put("/:id", checkAuth, extractFile, PostController.updatePost);
 
 router.get("/d3title", PostController.getpostTitleD3);
 
-router.get("/ziv",PostController.getAllPosts);
+router.get("/maps",PostController.getAllPosts);
 
 router.get("", PostController.getPosts);
 

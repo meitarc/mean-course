@@ -72,7 +72,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             postDate: null,
 
             latitude: postData.latitude,
-            longitude: postData.longitude,
+            longitude: postData.longitude
           };
           console.log('the creator is ' + this.post.creator);
 
