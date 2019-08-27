@@ -9,14 +9,12 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
 
-
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.css']
 })
 export class PostCreateComponent implements OnInit, OnDestroy {
-
   enteredTitle = '';
   enteredContent = '';
   post: Post;
@@ -27,6 +25,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   private postId: string;
   private authStatusSub: Subscription;
   addImag = false;
+  latitude: string;
+  longitude: string;
   constructor(
     public postsService: PostsService,
     public route: ActivatedRoute,
@@ -34,6 +34,13 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.getPosition().then(pos => {
+      this.latitude = String(pos.lat);
+      this.longitude = String(pos.lng);
+
+      console.log(`Positon: ${pos.lng} ${pos.lat}`);
+     });
+
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(authStatus => {
       this.isLoading = false;
     });
@@ -60,7 +67,9 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             title: postData.title,
             content: postData.content,
             imagePath: postData.imagePath,
-            creator: postData.creator
+            creator: postData.creator,
+            latitude: postData.latitude,
+            longitude: postData.longitude
           };
           console.log('the creator is ' + this.post.creator);
 
@@ -95,13 +104,26 @@ export class PostCreateComponent implements OnInit, OnDestroy {
       return;
      }
      this.isLoading = true;
+
+     this.getPosition().then(pos => {
+       this.latitude = String(pos.lat);
+       this.longitude = String(pos.lng);
+       console.log(this.latitude);
+       console.log(this.longitude);
+
+       console.log(`Positon: ${pos.lng} ${pos.lat}`);
+      });
+
+
      if (this.mode === 'create') {
 
       this.postsService.addPost(
         this.form.value.title,
         this.form.value.content,
         this.form.value.image,
-        this.addImag
+        this.addImag,
+        this.latitude,
+        this.longitude
       );
 
     } else {
@@ -110,7 +132,9 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         this.form.value.title,
         this.form.value.content,
         this.form.value.image,
-        this.addImag
+        this.addImag,
+        this.latitude,
+        this.longitude
       );
     }
      this.form.reset();
@@ -118,5 +142,19 @@ export class PostCreateComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.authStatusSub.unsubscribe();
+  }
+
+  getPosition(): Promise<any> {
+    return new Promise((resolve, reject) => {
+
+      navigator.geolocation.getCurrentPosition(resp => {
+
+          resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
+        },
+        err => {
+          reject(err);
+        });
+    });
+
   }
 }

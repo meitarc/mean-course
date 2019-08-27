@@ -7,8 +7,13 @@ exports.createPost = (req, res, next) => {
   today = new Date();
   img=null
   if(!(req.file==null)){
-      img= url + "/images/" + req.file.filename
+      img= url + "/images/" + req.file.filename;
   }
+  console.log("server poet: ");
+  console.log(req.body.longitude);
+  console.log("server poet: ");
+
+  console.log(req.body.latitude);
 
   const post = new Post({
     title: req.body.title,
@@ -17,7 +22,9 @@ exports.createPost = (req, res, next) => {
     //imagePath: url + "/images/" + req.file.filename,
     creator: req.userData.userId,
     userName: req.userData.email.split('@')[0],
-    postDate: new Date().toLocaleString()
+    postDate: new Date().toLocaleString(),
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
   });
   post.save().then(createdPost => {
     res.status(201).json({
@@ -36,6 +43,12 @@ exports.createPost = (req, res, next) => {
 };
 
 exports.updatePost = (req, res, next) => {
+
+  console.log("serveraa poet: ");
+  console.log(req.body.longitude);
+  console.log("server aaapoet: ");
+
+  console.log(req.body.latitude);
   let imagePath = req.body.imagePath;
   if (req.file) {
     const url = req.protocol + "://" + req.get("host");
@@ -48,6 +61,8 @@ exports.updatePost = (req, res, next) => {
     imagePath: imagePath,
     creator: req.userData.userId,
     userName: req.userData.email.split('@')[0],
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
   });
   Post.updateOne({
     _id: req.params.id,

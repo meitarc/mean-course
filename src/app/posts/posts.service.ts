@@ -34,6 +34,8 @@ export class PostsService {
               creator: post.creator,
               userName: post.userName,
               postDate: post.postDate,
+              latitude: post.latitude,
+              longitude: post.longitude
             };
           }),
           maxPosts: postDate.maxPosts
@@ -51,12 +53,13 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ _id: string, title: string, content: string, imagePath: string, creator: string }>(
+    // tslint:disable-next-line: max-line-length
+    return this.http.get<{ _id: string, title: string, content: string, imagePath: string, creator: string , latitude: string, longitude: string}>(
       BACKEND_URL + id
     );
   }
 
-  addPost(title: string, content: string, image: File, addImage: boolean) {
+  addPost(title: string, content: string, image: File, addImage: boolean, latitude: string, longitude: string) {
     const postDate = new FormData();
     postDate.append('title', title);
     postDate.append('content', content);
@@ -65,6 +68,13 @@ export class PostsService {
     } else {
       postDate.append('image', null);
     }
+    postDate.append('latitude', latitude);
+    postDate.append('longitude', longitude);
+    console.log('add post');
+
+    console.log(typeof(latitude));
+    console.log(typeof(longitude));
+
     this.http
       .post<{ message: string, post: Post }>(
         BACKEND_URL,
@@ -75,7 +85,7 @@ export class PostsService {
       });
   }
 
-  updatePost(id: string, title: string, content: string, image: File | string, addImage: boolean) {
+  updatePost(id: string, title: string, content: string, image: File | string, addImage: boolean, latitude: string, longitude: string) {
     let postDate: Post | FormData;
     if (typeof (image) === 'object') {
       postDate = new FormData();
@@ -88,19 +98,21 @@ export class PostsService {
       } else {
         postDate.append('image', null);
       }
-
+      postDate.append('latitude', latitude);
+      postDate.append('latitude', longitude);
     } else {
 
       if (addImage) {
-        postDate = { id, title, content, imagePath: image, creator: null };
+        postDate = { id, title, content, imagePath: image, creator: null , latitude, longitude};
 
       } else {
-        postDate = { id, title, content, imagePath: null, creator: null };
+        postDate = { id, title, content, imagePath: null, creator: null , latitude, longitude};
 
       }
 
-      postDate = { id, title, content, imagePath: image, creator: null };
+      postDate = { id, title, content, imagePath: image, creator: null , latitude, longitude};
     }
+
     this.http
       .put(BACKEND_URL + id, postDate)
       .subscribe(response => {
