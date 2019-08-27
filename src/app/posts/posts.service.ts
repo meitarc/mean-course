@@ -19,6 +19,8 @@ export class PostsService {
     return this.posts;
   }
   getPosts(postsPerPage: number, currentPage: number) {
+    console.log(postsPerPage + ' ' + currentPage);
+
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
     this.http.get<{ message: string, posts: any, maxPosts: number }>(
       BACKEND_URL + queryParams
@@ -54,7 +56,7 @@ export class PostsService {
 
   getPost(id: string) {
     // tslint:disable-next-line: max-line-length
-    return this.http.get<{ _id: string, title: string, content: string, imagePath: string, creator: string , latitude: string, longitude: string}>(
+    return this.http.get<{ _id: string, title: string, content: string, imagePath: string, creator: string, latitude: string, longitude: string }>(
       BACKEND_URL + id
     );
   }
@@ -72,8 +74,8 @@ export class PostsService {
     postDate.append('longitude', longitude);
     console.log('add post');
 
-    console.log(typeof(latitude));
-    console.log(typeof(longitude));
+    console.log(typeof (latitude));
+    console.log(typeof (longitude));
 
     this.http
       .post<{ message: string, post: Post }>(
@@ -103,14 +105,14 @@ export class PostsService {
     } else {
 
       if (addImage) {
-        postDate = { id, title, content, imagePath: image, creator: null , latitude, longitude};
+        postDate = { id, title, content, imagePath: image, creator: null, latitude, longitude };
 
       } else {
-        postDate = { id, title, content, imagePath: null, creator: null , latitude, longitude};
+        postDate = { id, title, content, imagePath: null, creator: null, latitude, longitude };
 
       }
 
-      postDate = { id, title, content, imagePath: image, creator: null , latitude, longitude};
+      postDate = { id, title, content, imagePath: image, creator: null, latitude, longitude };
     }
 
     this.http
@@ -126,4 +128,10 @@ export class PostsService {
   getTitlesD3() {
     return this.http.get<{ docs: any[] }>(BACKEND_URL + 'd3title');
   }
+
+  newGetAll() {
+    console.log('newGetAll');
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'ziv');
+  }
+
 }

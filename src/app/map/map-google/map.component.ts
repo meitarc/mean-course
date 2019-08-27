@@ -4,6 +4,7 @@ import PlaceResult = google.maps.places.PlaceResult;
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 import { Marker } from '../map.model';
+import { PostsService } from 'src/app/posts/posts.service';
 
 @Component({
   selector: 'app-map',
@@ -21,7 +22,7 @@ export class MapComponent implements OnInit {
   public markers: Marker[] = [];
   public locations: any;
 
-  constructor(private userCountry: AuthService, private router: Router) {
+  constructor(private userCountry: AuthService, private postlocation: PostsService, private router: Router) {
   }
 
   ngOnInit() {
@@ -32,14 +33,25 @@ export class MapComponent implements OnInit {
 
     console.log('start grab from data base');
 
+    this.postlocation.newGetAll().subscribe(d => {
+      d.posts.forEach(element => {
+        console.log(element.title, element.latitude , element.longitude);
+        let mark: Marker = { lat: element.latitude, lng: element.longitude, label: element.title, draggable: false };
+        other_array.push(mark);
+      });
+    });
+
+    /*
     this.userCountry.getcountries().subscribe(d => {
       // tslint:disable-next-line: only-arrow-functions
-      d.countries.forEach(function(object) {
+      d.countries.forEach(function (object) {
         // tslint:disable-next-line: prefer-const
         let mark: Marker = { lat: object.lat, lng: object.lng, label: object.label, draggable: object.draggable };
         other_array.push(mark);
       });
     });
+    */
+
     this.markers = other_array;
   }
   clickedMarker(label: string, index: number) {
