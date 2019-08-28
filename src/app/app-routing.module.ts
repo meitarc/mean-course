@@ -9,6 +9,7 @@ import { CommentCreateComponent } from './comments/comment-create/comment-create
 import { AuthGuard } from './auth/auth.guard';
 import { MapComponent } from './map/map-google/map.component';
 import { Postd3Component } from './postd3/postd3.component';
+import { ScrapListComponent } from './scraps/scrap-list/scrap-list.component';
 
 const routes: Routes = [
   { path: '', component: PostListComponent },
@@ -19,9 +20,11 @@ const routes: Routes = [
   { path: 'comments/create/:postid', component: CommentCreateComponent, canActivate: [AuthGuard] },
   { path: 'comments/edit/:commentId', component: CommentCreateComponent, canActivate: [AuthGuard] },
 
+  { path: 'scraps', component:  ScrapListComponent },
+
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
   { path: 'map', component: MapComponent },
-  { path: 'd3',component:Postd3Component}
+  { path: 'd3', component: Postd3Component}
 ];
 
 @NgModule({

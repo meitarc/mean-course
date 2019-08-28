@@ -1,0 +1,19 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<mat-accordion multi="true" *ngIf="scraps.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let scrap of scraps.slice().reverse()">
+    <mat-expansion-panel-header>
+      {{ scrap.title }}
+    </mat-expansion-panel-header>
+    <p>
+      Year: {{ scrap.year }}<br>
+      Summery: {{ scrap.summery }}<br>
+    Len: {{ scrap.len }}<br>
+      Director: {{scrap.director}}
+    </p>
+
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator [length]="totoalScraps" [pageSize]="scrapsPerPage" [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangePage($event)" *ngIf="scraps.length > 0"></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="scraps.length <= 0 && !isLoading">No scraps added yet!</p>

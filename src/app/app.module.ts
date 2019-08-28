@@ -12,6 +12,7 @@ import { ErrorComponent } from './error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './posts/posts.module';
 import { CommentsModule } from './comments/comments.module';
+import { ScrapsModule } from './scraps/scraps.module';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
 import { MapMdoule } from './map/map.mdoule';
@@ -35,6 +36,7 @@ import { Postd3Component } from './postd3/postd3.component';
     AngularMaterialModule,
     PostsModule,
     CommentsModule,
+    ScrapsModule,
     MapMdoule,
     MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot({

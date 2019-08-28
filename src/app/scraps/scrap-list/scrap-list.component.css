@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+mat-paginator{
+  margin-top: 1rem;
+}
+
+.info-text {
+  text-align: center;
+}
+
+form-control {
+  width: 300px;
+  border: 2px groove;
+  border-radius: 4px;
+}
