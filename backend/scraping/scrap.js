@@ -1,7 +1,7 @@
 request = require('request');
 cheerio = require('cheerio');
 fs = require('fs');
-const Scraper = require('../models/scrapedSite');
+const Scraper = require('../models/scrap');
 
 
 const express = require("express");
