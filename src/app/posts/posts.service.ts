@@ -19,7 +19,6 @@ export class PostsService {
     return this.posts;
   }
   getPosts(postsPerPage: number, currentPage: number) {
-    console.log(postsPerPage + ' ' + currentPage);
 
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
     this.http.get<{ message: string, posts: any, maxPosts: number }>(

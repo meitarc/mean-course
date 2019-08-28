@@ -11,7 +11,7 @@ export class PiechartDirective implements OnInit {
 
     @Input() data: any[];
 
-    private margin = { top: 20, right: 20, bottom: 30, left: 50 };
+    private margin = { top: 20, right: 20, bottom: 30, left: 10 };
     private width: number;
     private height: number;
     private radius: number;
@@ -23,8 +23,8 @@ export class PiechartDirective implements OnInit {
     private svg: any;
 
     constructor(private el: ElementRef) {
-        this.width = 900 - this.margin.left - this.margin.right;
-        this.height = 500 - this.margin.top - this.margin.bottom;
+        this.width = 1000 - this.margin.left - this.margin.right;
+        this.height = 650 - this.margin.top - this.margin.bottom;
         this.radius = Math.min(this.width, this.height) / 2;
     }
 
@@ -42,15 +42,15 @@ export class PiechartDirective implements OnInit {
           .outerRadius(this.radius - 10)
           .innerRadius(0);
         this.labelArc = d3Shape.arc()
-          .outerRadius(this.radius - 40)
-          .innerRadius(this.radius - 40);
+          .outerRadius(this.radius - 70)
+          .innerRadius(this.radius - 70);
         this.pie = d3Shape.pie()
           .sort(null)
           .value((d: any) => d.count);
         this.svg = d3.select(this.el.nativeElement)
           .append('g')
           .attr('transform', 'translate(' + this.width / 2 + ',' + this.height / 2 + ')');
-        this.el.nativeElement.style.height = "500";
+        this.el.nativeElement.style.height = "600";
         this.el.nativeElement.style.width = "960";
       }
 

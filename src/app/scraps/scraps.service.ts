@@ -19,8 +19,6 @@ export class ScrapsService {
     return this.scraps;
   }
   getScraps(scrapsPerPage: number, currentPage: number) {
-    console.log(scrapsPerPage + ' ' + currentPage);
-
     const queryParams = `?pagesize=${scrapsPerPage}&page=${currentPage}`;
     this.http.get<{ message: string, scraps: any, maxScraps: number }>(
       BACKEND_URL + queryParams
