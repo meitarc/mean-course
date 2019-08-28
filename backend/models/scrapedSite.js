@@ -11,7 +11,7 @@ const scrap = mongoose.Schema({
   },
   summery: {
     type: String,
-    required: true
+    required: false
   },
   len: {
     type: String,

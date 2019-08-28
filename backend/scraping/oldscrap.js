@@ -1,31 +1,18 @@
 request = require('request');
 cheerio = require('cheerio');
 fs = require('fs');
+
 const Scraper = require('../models/scrapedSite');
 
+// urlToScrap = "https://en.wikipedia.org/wiki/List_of_Presidents_of_the_United_States"
 
-const express = require("express");
-const bodyParser = require("body-parser");
+urlToScrap = 'https://www.imdb.com/title/tt0010000/';
 
-const mongoose = require('mongoose');
-//mongoose.connect("mongodb+srv://Fox:"+ 'Wb6CZi82Z8t5u9dO' +"@cluster0-ugkpd.mongodb.net/node-angular?retryWrites=true&w=majority")
-mongoose.connect("mongodb://localhost:27017/tester")
-.then(()=>{
-  console.log('Connected to database');
-}).catch(()=>{
-  console.log('Connection failed');
-});
-
-urlToScrap = 'https://www.imdb.com/title/tt00';
-urlMid = 10101;
-urlEnd = '/';
-
-for (index = 0;index < 5 ;index++) {
-request(urlToScrap + String(urlMid + index) + urlEnd, function(error, response, body) {
+request(urlToScrap, function(error, response, body) {
   if(error) {
-    console.log("Error: ");
+    console.log("Error: " + error);
   }
-  console.log("Status code: ");
+  console.log("Status code: " + response.statusCode);
 
   $ = cheerio.load(body);
 
@@ -34,38 +21,27 @@ request(urlToScrap + String(urlMid + index) + urlEnd, function(error, response, 
   summery = $('.summary_text').text().trim();
   len = $('.subtext > time').text().trim();
   director = $('.credit_summary_item > a').first('Director').text();
-  /*
+
+
   console.log(title);
   console.log(year);
   console.log(summery);
   console.log(len);
   console.log(director);
-  */
-  scraper = new Scraper({
+
+  const scraper = new Scraper({
     title: title,
     year: year,
     summery: summery,
     len: len,
     director: director
   });
-  // console.log('test1');
+  console.log('test1');
 
-  scraper.save().then(result => {
-    // console.log('test2');
-    res.status(201).json({
-      message: "scrap created!",
-      result: result
-    });
-  })
-  .catch(err => {
-    res.status(500).json({
-      message: 'Invalid authntication credintials!'
-    });
-  });
+  scraper.save();
 
   // fs.appendFileSync('scrapedSite.txt',body);
   });
-}
 
 /* example code to extract information
  $('div.col1 > ul > li.grid-posts__item').each(function( index ) {
