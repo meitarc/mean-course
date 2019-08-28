@@ -68,6 +68,9 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             content: postData.content,
             imagePath: postData.imagePath,
             creator: postData.creator,
+            userName: null,
+            postDate: null,
+
             latitude: postData.latitude,
             longitude: postData.longitude
           };
@@ -108,8 +111,6 @@ export class PostCreateComponent implements OnInit, OnDestroy {
      this.getPosition().then(pos => {
        this.latitude = String(pos.lat);
        this.longitude = String(pos.lng);
-       console.log(this.latitude);
-       console.log(this.longitude);
 
        console.log(`Positon: ${pos.lng} ${pos.lat}`);
       });
@@ -152,7 +153,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
           resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
         },
         err => {
-          reject(err);
+          resolve({lng: null, lat: null});
         });
     });
 

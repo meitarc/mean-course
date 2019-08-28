@@ -19,6 +19,8 @@ export class PostsService {
     return this.posts;
   }
   getPosts(postsPerPage: number, currentPage: number) {
+    console.log(postsPerPage + ' ' + currentPage);
+
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
     this.http.get<{ message: string, posts: any, maxPosts: number }>(
       BACKEND_URL + queryParams
@@ -42,7 +44,6 @@ export class PostsService {
         };
       }))
       .subscribe(transformPosts => {
-        console.log(transformPosts);
         this.posts = transformPosts.posts;
         this.postsUpdated.next({ posts: [...this.posts], postCount: transformPosts.maxPosts });
       });
@@ -54,7 +55,7 @@ export class PostsService {
 
   getPost(id: string) {
     // tslint:disable-next-line: max-line-length
-    return this.http.get<{ _id: string, title: string, content: string, imagePath: string, creator: string , latitude: string, longitude: string}>(
+    return this.http.get<{ _id: string, title: string, content: string, imagePath: string, creator: string, latitude: string, longitude: string }>(
       BACKEND_URL + id
     );
   }
@@ -99,14 +100,14 @@ export class PostsService {
     } else {
 
       if (addImage) {
-        postDate = { id, title, content, imagePath: image, creator: null , latitude, longitude};
+        postDate = { id, title, content, imagePath: image, creator: null, userName: null, postDate: null , latitude, longitude};
 
       } else {
-        postDate = { id, title, content, imagePath: null, creator: null , latitude, longitude};
+        postDate = { id, title, content, imagePath: null, creator: null, userName: null, postDate: null , latitude, longitude};
 
       }
 
-      postDate = { id, title, content, imagePath: image, creator: null , latitude, longitude};
+      postDate = { id, title, content, imagePath: image, creator: null, userName: null, postDate: null , latitude, longitude};
     }
 
     this.http
@@ -121,5 +122,9 @@ export class PostsService {
   }
   getTitlesD3() {
     return this.http.get<{ docs: any[] }>(BACKEND_URL + 'd3title');
+  }
+
+  newGetAll() {
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'maps');
   }
 }

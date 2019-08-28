@@ -5,6 +5,8 @@ export interface Post {
   content: string;
   imagePath: string;
   creator: string;
+  userName: string;
+  postDate: string;
   latitude: string;
   longitude: string;
 }

@@ -5,9 +5,9 @@ exports.createPost = (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
 
   today = new Date();
-  img=null
-  if(!(req.file==null)){
-      img= url + "/images/" + req.file.filename;
+  img = null
+  if (!(req.file == null)) {
+    img = url + "/images/" + req.file.filename;
   }
 
   const post = new Post({
@@ -21,14 +21,14 @@ exports.createPost = (req, res, next) => {
     longitude: req.body.longitude
   });
   post.save().then(createdPost => {
-    res.status(201).json({
-      message: "Post added successfully",
-      post: {
-        ...createdPost,
-        id: createdPost._id
-      }
-    });
-  })
+      res.status(201).json({
+        message: "Post added successfully",
+        post: {
+          ...createdPost,
+          id: createdPost._id
+        }
+      });
+    })
     .catch(error => {
       res.status(500).json({
         message: "Creating a post failed!"
@@ -54,19 +54,19 @@ exports.updatePost = (req, res, next) => {
     longitude: req.body.longitude
   });
   Post.updateOne({
-    _id: req.params.id,
-    creator: req.userData.userId
-  }, post).then(result => {
-    if (result.n > 0) {
-      res.status(200).json({
-        message: "Update successful!"
-      });
-    } else {
-      res.status(401).json({
-        message: "Not authorized!"
-      });
-    }
-  })
+      _id: req.params.id,
+      creator: req.userData.userId
+    }, post).then(result => {
+      if (result.n > 0) {
+        res.status(200).json({
+          message: "Update successful!"
+        });
+      } else {
+        res.status(401).json({
+          message: "Not authorized!"
+        });
+      }
+    })
     .catch(error => {
       res.status(500).json({
         message: "Couldn't update post!"
@@ -139,9 +139,37 @@ exports.deletePost = (req, res, next) => {
 };
 
 exports.getpostTitleD3 = (req, res, next) => {
-  Post.aggregate([
-    { "$group": { _id: "$title", count: { $sum: 1 } } }
-  ]).then(docs => {
-    return res.status(200).json({ docs });
+  Post.aggregate([{
+    "$group": {
+      _id: "$title",
+      count: {
+        $sum: 1
+      }
+    }
+  }]).then(docs => {
+    return res.status(200).json({
+      docs
+    });
   })
+};
+
+exports.getAllPosts = (req, res, next) => {
+  const postQuery = Post.find();
+  let fetchedPosts;
+  postQuery
+    .then(documents => {
+      fetchedPosts = documents;
+      return Post.count();
+    })
+    .then(count => {
+      res.status(200).json({
+        message: "Posts fetched successfully!",
+        posts: fetchedPosts,
+        maxPosts: count
+      });
+    }).catch(error => {
+      res.status(500).json({
+        message: "Fetching posts failed!"
+      });
+    });
 };
