@@ -1,5 +1,7 @@
 const Post = require("../models/post");
 
+const Comment = require("../models/comment");
+
 exports.createPost = (req, res, next) => {
 
   const url = req.protocol + "://" + req.get("host");
@@ -136,6 +138,16 @@ exports.deletePost = (req, res, next) => {
       message: "Fetching post failed!"
     });
   });
+
+Comment.deleteMany({
+    postId: req.params.id,
+  }).then(result => {
+    if (result.n > 0) {
+      res.status(200).json({
+        message: "Comment successful!"
+      });
+    }
+  }).catch(error => {});
 };
 
 exports.getpostTitleD3 = (req, res, next) => {

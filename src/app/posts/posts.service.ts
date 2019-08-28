@@ -119,6 +119,7 @@ export class PostsService {
   deletePost(postId: string) {
     return this.http.delete(BACKEND_URL + postId);
   }
+
   getTitlesD3() {
     return this.http.get<{ docs: any[] }>(BACKEND_URL + 'd3title');
   }
