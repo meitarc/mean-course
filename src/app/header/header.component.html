@@ -25,6 +25,10 @@
       </li>
       <li>
         <a mat-button routerLink="scraps" routerLinkActive="mat-accent">Scraps</a>
-    </li>
+      </li>
+      <li *ngIf="userIsAuth">
+        <a mat-button routerLink="/chat" routerLinkActive="mat-accent">Chat</a>
+      </li>
+<!-- && authService.getUserNameFromLogin()[1] -->
     </ul>
   </mat-toolbar>

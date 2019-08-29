@@ -1,0 +1,35 @@
+<div class="container-fluid" *ngIf="userIsAuth">
+  <div class="row">
+    <h2>Realtime Chat Application</h2>
+    <hr>
+  </div>
+  <div class="row" *ngIf="userIsAuth">
+  <div class="col-sm-5">
+      <div class="form-group">
+        <label><b>Connected as: </b>{{ this.username}}</label>
+        <br><br> Chat:
+      </div>
+    </div>
+
+    <div class="col sm-2">
+      <div style="margin-top:1px;" class="pull-right">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="well" style="height:400px; padding:15px;">
+      <div *ngFor="let item of messageArray">
+        <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10">
+      <input type="text" class="form-control" [(ngModel)]="messageText">
+    </div>
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>

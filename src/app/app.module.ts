@@ -19,6 +19,7 @@ import { MapMdoule } from './map/map.mdoule';
 import { PiechartDirective } from './d3-graph/piechart.directive';
 import { Postd3Component } from './postd3/postd3.component';
 
+import {WebSocketModule} from './web-socket/web.socket.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,9 @@ import { Postd3Component } from './postd3/postd3.component';
     ScrapsModule,
     MapMdoule,
     MatGoogleMapsAutocompleteModule,
+
+    WebSocketModule,
+
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAYepYkwL_TN6WFKiUcheiKuGSIqqy_1aQ'
     })

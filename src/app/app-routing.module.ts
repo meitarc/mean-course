@@ -11,6 +11,8 @@ import { MapComponent } from './map/map-google/map.component';
 import { Postd3Component } from './postd3/postd3.component';
 import { ScrapListComponent } from './scraps/scrap-list/scrap-list.component';
 
+import {ChatComponent} from './web-socket/socket-io/chat.component';
+
 const routes: Routes = [
   { path: '', component: PostListComponent },
   { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
@@ -24,7 +26,10 @@ const routes: Routes = [
 
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
   { path: 'map', component: MapComponent },
-  { path: 'd3', component: Postd3Component}
+  { path: 'd3', component: Postd3Component},
+
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard]}
+
 ];
 
 @NgModule({
