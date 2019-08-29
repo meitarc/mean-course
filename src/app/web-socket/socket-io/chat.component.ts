@@ -42,8 +42,10 @@ export class ChatComponent implements OnInit , OnDestroy {
     this.chatService.leaveRoom({ user: this.authService.getUserName() });
   }
   sendMessage() {
-    this.chatService.sendMessage({ user: this.authService.getUserName(), message: this.messageText});
-    this.messageText = '';
+    if (this.messageText !== '' && this.messageText != null) {
+          this.chatService.sendMessage({ user: this.authService.getUserName(), message: this.messageText});
+          this.messageText = '';
+    }
   }
 
   ngOnInit() {
@@ -54,8 +56,6 @@ export class ChatComponent implements OnInit , OnDestroy {
       .subscribe((isAuthenticated) => {
         this.userIsAuth = isAuthenticated;
       });
-    console.log(this.userIsAuth);
-
     }
 
 

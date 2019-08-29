@@ -14,7 +14,6 @@ export class WebSocketService {
   private socket = io('http://localhost:3000');
 
   joinRoom(data) {
-    console.log(data);
     this.socket.emit('join', data);
   }
 

@@ -10,8 +10,6 @@ const server = http.createServer(app);
 const io = require('socket.io').listen(server);
 
 io.on('connection', (socket)=> {
-  console.log('new conncetion is add');
-
   socket.on('join',(data)=>{
     socket.join(data.room);
     socket.broadcast.to(data.room).emit('new user joined',{user : data.user , message: 'has joined the room'});
@@ -21,7 +19,6 @@ io.on('connection', (socket)=> {
     socket.broadcast.to(data.room).emit('left room',{user : data.user, message: 'left the room'});
   });
   socket.on('message',data => {
-    // console.log(data,"msg");
     io.in(data.room).emit('new message',{user: data.user, message: data.message});
   });
 });
