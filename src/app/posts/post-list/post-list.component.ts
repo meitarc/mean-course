@@ -23,7 +23,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   pageSizeOptions = [1, 2, 5, 10, 50, 100];
   userIsAuth = false;
   userId: string;
-  zivStirng: string;
   curentCreateTimes: number;
   currentDeleteTimes: number;
   private postsSub: Subscription;
@@ -53,7 +52,6 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.userId = this.authService.getUserId();
       });
     this.postsService.getCms().subscribe((d: any) => {
-      console.log(d.doc);
       this.curentCreateTimes = d.doc[0];
       this.currentDeleteTimes = d.doc[1];
     });
@@ -71,6 +69,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsService.deletePost(postId).subscribe(() => {
       this.postsService.getPosts(this.postsPerPage, this.currentPage);
     });
+    window.location.reload();
   }
 
   ngOnDestroy() {

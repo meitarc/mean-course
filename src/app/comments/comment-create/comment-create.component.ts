@@ -57,7 +57,6 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
             userName: null,
             commentDate: null
           };
-          console.log('the creator is ' + this.comment.creator);
 
           this.form.setValue({
             title: this.comment.title,

@@ -1,17 +1,16 @@
-import{Comment}from './comment.model';
-import {PipeTransform,Pipe} from '@angular/core';
+import {Comment} from './comment.model';
+import {PipeTransform, Pipe} from '@angular/core';
 
 @Pipe({
-    name:'commentTitleFilter'
+    name: 'commentTitleFilter'
 })
 
-export class CommentTitleFilterPipe implements PipeTransform{
-    transform(comments:Comment[],searchTerm:String):Comment[] {
-        if(!comments || !searchTerm)
-        {
+export class CommentTitleFilterPipe implements PipeTransform {
+    transform(comments: Comment[], searchTerm: string): Comment[] {
+        if (!comments || !searchTerm) {
             return comments;
         }
-        return comments.filter(comment=>
-            comment.title.toLocaleLowerCase().indexOf(searchTerm.toLocaleLowerCase())!== -1);
+        return comments.filter(comment =>
+            comment.title.toLocaleLowerCase().indexOf(searchTerm.toLocaleLowerCase()) !== -1);
     }
 }

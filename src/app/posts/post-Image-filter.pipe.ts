@@ -5,6 +5,7 @@ import { PipeTransform , Pipe } from '@angular/core';
     name: 'postImageFilter'
 })
 
+// tslint:disable-next-line: class-name
 export class postImageFilterPipe implements PipeTransform {
     postsToReturn: Post[] = [];
 

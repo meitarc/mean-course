@@ -129,7 +129,7 @@ export class PostsService {
   }
 
   getCms() {
-    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'ziv');
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'sketch');
   }
 
 }

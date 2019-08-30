@@ -26,12 +26,11 @@ export class CommentListComponent implements OnInit, OnDestroy {
   pageSizeOptions = [1, 2, 5, 10];
   userIsAuth = false;
   userId: string;
-  zivStirng: string;
   private commentsSub: Subscription;
   private authStateusSub: Subscription;
   postId: string;
-  searchTermByTitle: String;
-  searchTermByContent: String;
+  searchTermByTitle: string;
+  searchTermByContent: string;
 
   firstTime = true;
   constructor(public commentsService: CommentsService, public route: ActivatedRoute, private authService: AuthService) {}

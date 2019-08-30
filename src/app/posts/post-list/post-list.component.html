@@ -1,9 +1,9 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div>
-  <mat-card>
-   <li>current create time while log in: {{curentCreateTimes}}</li>
-   <li>current delete time while log in: {{currentDeleteTimes}}</li>
-  </mat-card>
+  <p>
+   <li>Current post create: {{curentCreateTimes}}</li>
+   <li>Current post delete: {{currentDeleteTimes}}</li>
+  </p>
 </div>
 <div class="form-group">
   <input type="text" class="form-control" placeholder="Search By Title" [(ngModel)]="searchTermByTitle"/>

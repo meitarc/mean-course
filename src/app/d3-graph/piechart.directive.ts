@@ -50,12 +50,12 @@ export class PiechartDirective implements OnInit {
         this.svg = d3.select(this.el.nativeElement)
           .append('g')
           .attr('transform', 'translate(' + this.width / 2 + ',' + this.height / 2 + ')');
-        this.el.nativeElement.style.height = "600";
-        this.el.nativeElement.style.width = "960";
+        this.el.nativeElement.style.height = '600';
+        this.el.nativeElement.style.width = '960';
       }
 
       private drawPie() {
-        let g = this.svg.selectAll('.arc')
+        const g = this.svg.selectAll('.arc')
           .data(this.pie(this.data))
           .enter().append('g')
           .attr('class', 'arc');
@@ -63,7 +63,7 @@ export class PiechartDirective implements OnInit {
           .style('fill', (d: any) => this.color(d.data._id));
         g.append('text').attr('transform', (d: any) => 'translate(' + this.labelArc.centroid(d) + ')')
           .attr('dy', '.35em')
-          .text((d: any) => (d.data._id + " " + d.data.count));
+          .text((d: any) => (d.data._id + ' ' + d.data.count));
 
       }
 
