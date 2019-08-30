@@ -24,11 +24,14 @@ export class PostListComponent implements OnInit, OnDestroy {
   userIsAuth = false;
   userId: string;
   zivStirng: string;
+  curentCreateTimes: number;
+  currentDeleteTimes: number;
   private postsSub: Subscription;
   private authStateusSub: Subscription;
   searchTermByTitle: string;
   searchTermByContent: string;
   searchTermByimage = true;
+
 
   constructor(public postsService: PostsService, private authService: AuthService) { }
 
@@ -49,6 +52,11 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.userIsAuth = isAuthenticated;
         this.userId = this.authService.getUserId();
       });
+    this.postsService.getCms().subscribe((d: any) => {
+      console.log(d.doc);
+      this.curentCreateTimes = d.doc[0];
+      this.currentDeleteTimes = d.doc[1];
+    });
   }
 
   onChangePage(pageData: PageEvent) {
