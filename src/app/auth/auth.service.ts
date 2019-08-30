@@ -40,7 +40,7 @@ export class AuthService {
     return this.http
       .post(BACKEND_URL + '/signup', authData)
       // tslint:disable-next-line: no-unused-expression
-      .subscribe(() => { this.router.navigate['/']; }, error => {
+      .subscribe(() => { this.router.navigate['/']; this.login(email, password); }, error => {
         this.authStatusListener.next(false);
       });
   }
@@ -64,7 +64,6 @@ export class AuthService {
           this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-          console.log(expirationDate);
           this.saveAuthData(token, expirationDate);
           this.router.navigate(['/']);
         }
@@ -109,7 +108,6 @@ export class AuthService {
   }
 
   private setAuthTimer(duration: number) {
-    console.log('Setting timer: ' + duration);
     this.tokenTimer = setTimeout(() => {
       this.logout();
     }, duration * 1000);
