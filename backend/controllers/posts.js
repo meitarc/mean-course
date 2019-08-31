@@ -199,3 +199,11 @@ exports.getCMS = (req, res, next) => {
     doc
   });
 };
+
+
+exports.mapRed = (req, res, next) => {
+
+  //const postQuery = Post.find({ userName: "meitarc" });
+  //console.log(postQuery);
+
+}

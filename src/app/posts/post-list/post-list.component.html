@@ -26,6 +26,7 @@
     </div>
     <mat-action-row>
       <a mat-button color="primary" [routerLink]="['comments/list/', post.id]">Post comments</a>
+      <button mat-button color="warn" (click)="getMapR()">mapred</button>
 
       <div *ngIf="userIsAuth">
         <div *ngIf="userId == post.creator">

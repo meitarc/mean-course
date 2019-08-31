@@ -55,6 +55,7 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.curentCreateTimes = d.doc[0];
       this.currentDeleteTimes = d.doc[1];
     });
+
   }
 
   onChangePage(pageData: PageEvent) {
@@ -76,4 +77,11 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub.unsubscribe();
     this.authStateusSub.unsubscribe();
   }
+
+  getMapR() {
+    console.log('1');
+
+    this.postsService.getMapRed().subscribe((d: any) => {
+
+    });  }
 }

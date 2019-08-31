@@ -132,4 +132,9 @@ export class PostsService {
     return this.http.get<{ docs: any[] }>(BACKEND_URL + 'sketch');
   }
 
+  getMapRed() {
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'mapRed');
+
+  }
+
 }
