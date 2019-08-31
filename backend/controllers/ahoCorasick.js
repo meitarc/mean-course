@@ -10,3 +10,4 @@ var ac = new AhoCorasick(['keyword1', 'keyword2', 'etc']);
 var results = ac.search('should find keyword1 at position 19 and keyword2 at position 47. etc');
 
 console.log(results);
+

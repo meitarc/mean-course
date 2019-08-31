@@ -130,4 +130,9 @@ export class PostsService {
   newGetAll() {
     return this.http.get<{ docs: any[] }>(BACKEND_URL + 'maps');
   }
+
+  getCms() {
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'sketch');
+  }
+
 }

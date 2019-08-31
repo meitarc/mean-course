@@ -23,7 +23,6 @@ export class ScrapListComponent implements OnInit, OnDestroy {
   pageSizeOptions = [1, 2, 5, 10, 50, 100];
   userIsAuth = false;
   userId: string;
-  zivStirng: string;
   private scrapsSub: Subscription;
   private authStateusSub: Subscription;
 

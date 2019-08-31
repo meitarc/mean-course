@@ -37,8 +37,6 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     this.getPosition().then(pos => {
       this.latitude = String(pos.lat);
       this.longitude = String(pos.lng);
-
-      console.log(`Positon: ${pos.lng} ${pos.lat}`);
      });
 
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(authStatus => {
@@ -74,7 +72,6 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             latitude: postData.latitude,
             longitude: postData.longitude
           };
-          console.log('the creator is ' + this.post.creator);
 
           this.form.setValue({
             title: this.post.title,
@@ -111,8 +108,6 @@ export class PostCreateComponent implements OnInit, OnDestroy {
      this.getPosition().then(pos => {
        this.latitude = String(pos.lat);
        this.longitude = String(pos.lng);
-
-       console.log(`Positon: ${pos.lng} ${pos.lat}`);
       });
 
 

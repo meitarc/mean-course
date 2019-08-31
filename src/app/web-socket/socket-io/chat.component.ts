@@ -14,6 +14,7 @@ import {Subscription} from 'rxjs';
 })
 
 export class ChatComponent implements OnInit , OnDestroy {
+  // tslint:disable-next-line: ban-types
   messageArray: Array<{user: String, message: String}> = [];
   messageText: string;
   userName: AuthData;

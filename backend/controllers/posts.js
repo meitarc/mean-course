@@ -1,6 +1,9 @@
 const Post = require("../models/post");
 
 const Comment = require("../models/comment");
+const { CountMinSketch } = require('bloom-filters')
+
+const sketch = new CountMinSketch(0.001, 0.99);
 
 exports.createPost = (req, res, next) => {
 
@@ -11,6 +14,7 @@ exports.createPost = (req, res, next) => {
   if (!(req.file == null)) {
     img = url + "/images/" + req.file.filename;
   }
+  sketch.update('create');
 
   const post = new Post({
     title: req.body.title,
@@ -125,6 +129,7 @@ exports.deletePost = (req, res, next) => {
     creator: req.userData.userId
   }).then(result => {
     if (result.n > 0) {
+      sketch.update('delete');
       res.status(200).json({
         message: "Post successful!"
       });
@@ -139,7 +144,7 @@ exports.deletePost = (req, res, next) => {
     });
   });
 
-Comment.deleteMany({
+  Comment.deleteMany({
     postId: req.params.id,
   }).then(result => {
     if (result.n > 0) {
@@ -197,4 +202,13 @@ exports.getAllPosts = (req, res, next) => {
         message: "Fetching posts failed!"
       });
     });
+};
+
+exports.getCMS = (req, res, next) => {
+
+  doc = [sketch.count('create'), doc = sketch.count('delete')];
+
+  return res.status(200).json({
+    doc
+  });
 };

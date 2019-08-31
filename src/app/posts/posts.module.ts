@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostListComponent } from './post-list/post-list.component';

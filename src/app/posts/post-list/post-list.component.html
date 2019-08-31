@@ -1,4 +1,10 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
+<div>
+  <p>
+   <li>Current post create: {{curentCreateTimes}}</li>
+   <li>Current post delete: {{currentDeleteTimes}}</li>
+  </p>
+</div>
 <div class="form-group">
   <input type="text" class="form-control" placeholder="Search By Title" [(ngModel)]="searchTermByTitle"/>
   <input type="text" class="form-control" placeholder="Search By Content" [(ngModel)]="searchTermByContent"/>

@@ -18,7 +18,7 @@ export class WebSocketService {
   }
 
   newUserJoined() {
-    const observable = new Observable<{user: String, message: String}>(observer => {
+    const observable = new Observable<{user: string, message: string}>(observer => {
       this.socket.on('new user joined', (data) => {
         observer.next(data);
       });
@@ -32,7 +32,7 @@ export class WebSocketService {
   }
 
   userLeftRoom() {
-    const observable = new Observable<{user: String, message: String}>(observer => {
+    const observable = new Observable<{user: string, message: string}>(observer => {
       this.socket.on('left room', (data) => {
         observer.next(data);
       });
@@ -46,7 +46,7 @@ export class WebSocketService {
   }
 
   newMessageRecevied() {
-    const observable = new Observable<{user: String, message: String}>(observer => {
+    const observable = new Observable<{user: string, message: string}>(observer => {
       this.socket.on('new message', (data) => {
         observer.next(data);
       });

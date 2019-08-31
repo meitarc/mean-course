@@ -4,6 +4,7 @@ import { Post } from '../posts/post.model';
 
 
 @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'postd3',
     templateUrl: './postd3.component.html',
     styleUrls: ['./postd3.component.css']

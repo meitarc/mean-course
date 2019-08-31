@@ -1,10 +1,9 @@
-<h1>Angular Google Maps (AGM) Demo</h1>
+<h1>Angular Google Maps</h1>
 
 <agm-map [latitude]="lat" [longitude]="lng" [disableDefaultUI]="false" [zoomControl]="false">
 
   <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat"
     [longitude]="m.lng"  [markerDraggable]="m.draggable">
-<!--[label]="m.label"-->
     <agm-info-window>
       <strong>{{m.label}}</strong>
     </agm-info-window>
