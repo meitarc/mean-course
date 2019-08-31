@@ -8,3 +8,6 @@ subStr3 = new String('8gn87G7O8G8OGYUG68to845256156156321653156321r52631v506310r
 
 var ac = new AhoCorasick(['keyword1', 'keyword2', 'etc']);
 var results = ac.search('should find keyword1 at position 19 and keyword2 at position 47. etc');
+
+console.log(results);
+
