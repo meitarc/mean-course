@@ -79,8 +79,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   getMapR() {
-    console.log('1');
-
     this.postsService.getMapRed().subscribe((d: any) => {
 
     });  }

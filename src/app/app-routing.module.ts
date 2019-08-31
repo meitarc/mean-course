@@ -12,6 +12,7 @@ import { Postd3Component } from './postd3/postd3.component';
 import { ScrapListComponent } from './scraps/scrap-list/scrap-list.component';
 
 import {ChatComponent} from './web-socket/socket-io/chat.component';
+import { mapReduceD3Component } from './mapReduceD3/mapReduceD3.component';
 
 const routes: Routes = [
   { path: '', component: PostListComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
   { path: 'map', component: MapComponent },
   { path: 'd3', component: Postd3Component},
+  { path: 'mapReduceD3', component: mapReduceD3Component},
 
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard]}
 

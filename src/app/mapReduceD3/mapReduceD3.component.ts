@@ -17,7 +17,7 @@ export class mapReduceD3Component implements OnInit {
     constructor(private postService: PostsService) {}
 
     ngOnInit() {
-        this.postService.getMapReduceD3().subscribe(d => {
+      this.postService.getMapReduceD3().subscribe(d => {
           this.data = d.docs;
           if (this.data.length === 0) {
                 this.show = false;
