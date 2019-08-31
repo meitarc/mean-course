@@ -123,6 +123,9 @@ export class PostsService {
   getTitlesD3() {
     return this.http.get<{ docs: any[] }>(BACKEND_URL + 'd3title');
   }
+  getMapReduceD3() {
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'd3Reduce');
+  }
 
   newGetAll() {
     return this.http.get<{ docs: any[] }>(BACKEND_URL + 'maps');

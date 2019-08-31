@@ -20,6 +20,7 @@ import { PiechartDirective } from './d3-graph/piechart.directive';
 import { Postd3Component } from './postd3/postd3.component';
 
 import {WebSocketModule} from './web-socket/web.socket.module';
+import { mapReduceD3Component } from './mapReduceD3/mapReduceD3.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {WebSocketModule} from './web-socket/web.socket.module';
     HeaderComponent,
     ErrorComponent,
     PiechartDirective,
-    Postd3Component
+    Postd3Component,
+    mapReduceD3Component
   ],
   imports: [
     BrowserModule,

@@ -164,7 +164,20 @@ exports.getpostTitleD3 = (req, res, next) => {
     });
   })
 };
+var o = {};
+o.map = function () { emit(this.title, 1) };
+o.reduce = function (k, vals) { return vals.length };
 
+exports.getpostSomethingD3 = (req, res, next) => {
+  Post.mapReduce(o,function(err,results){
+    
+  }).then(docs => {
+    return res.status(200).json({
+      docs
+    });
+  })
+};
+  
 exports.getAllPosts = (req, res, next) => {
   const postQuery = Post.find();
   let fetchedPosts;
