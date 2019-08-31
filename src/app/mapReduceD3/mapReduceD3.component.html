@@ -1,0 +1,7 @@
+<div *ngIf='show'>
+    <h1 class="m-auto">We just want to show something:</h1>
+    <svg appPiechart [data]="data"></svg>
+</div>
+<div *ngIf='!show'>
+    <h1 class="m-auto">There are no Posts</h1>
+</div>
