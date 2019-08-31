@@ -78,8 +78,4 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.authStateusSub.unsubscribe();
   }
 
-  getMapR() {
-    this.postsService.getMapRed().subscribe((d: any) => {
-
-    });  }
 }

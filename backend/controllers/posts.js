@@ -176,9 +176,13 @@ o.map = function () { emit(this.title, 1) };
 o.reduce = function (k, vals) { return vals.length };
 
 exports.getpostSomethingD3 = (req, res, next) => {
+  console.log(o);
+
   Post.mapReduce(o,function(err,results){
+  console.log(o);
 
   }).then(docs => {
+
     return res.status(200).json({
       docs
     });
@@ -215,10 +219,3 @@ exports.getCMS = (req, res, next) => {
   });
 };
 
-
-exports.mapRed = (req, res, next) => {
-
-  //const postQuery = Post.find({ userName: "meitarc" });
-  //console.log(postQuery);
-
-}
