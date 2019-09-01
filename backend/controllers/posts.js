@@ -170,26 +170,52 @@ exports.getpostTitleD3 = (req, res, next) => {
   })
 };
 
+exports.getpostSomethingD3 =(req, res, next) => {
+  var o = {}
+      //self = this;
+    o.map = function () {
+        emit(this.title, 1);
+    };
+    o.reduce = function (k, vals) {
+        return vals.length;
+    };
 
-var o = {};
-o.map = function () { emit(this.title, 1) };
-o.reduce = function (k, vals) { return vals.length };
+    Post.mapReduce(o).then(docs => {
+      return res.status(200).json({docs});
+    }).catch(docs1=>{
+      console.log("errorrrrrrr");
 
+    })
+  };
+/*
 exports.getpostSomethingD3 = (req, res, next) => {
-  console.log(o);
 
-  Post.mapReduce(o,function(err,results){
-  console.log(o);
-
-  }).then(docs => {
-
-    return res.status(200).json({
-      docs
-    });
-  })
-};
+  console.log("hey","bye");
+  var o={};
+  o.map = 'function(){ console.log("map"); var k = this.latitude; emit(1,parseInt(k)) }';
+  o.reduce = 'function (k,vals) { console.log("reduce"); return Array.avg(vals) }';
+  o.out = { inline: 1};
+  o.query = {"date:": {$gte: 0}};
+  return Post.mapReduce(o).then((res) =>{
+    console.log("hey",res);
+    return res.result[0].value;
+  }).catch(console.log("kaka")
+  );
+*/
+  /*
+  var o={};
+  o.map = 'function(){ var k = this.date.getMonth(); emit(1,parseInt(this.degreesInTheSun)) }';
+  o.reduce = 'function (k,vals) { return Array.avg(values) }';
+  o.out = { inline: 1};
+  o.query = {"date:": {$gte: startDate, $lte: endDate}};
+  return await WeatherDbModel.mapReduce(o).then((res) =>{
+    return res.result[0].value;
+  });
+  */
+//};
 
 exports.getAllPosts = (req, res, next) => {
+
   const postQuery = Post.find();
   let fetchedPosts;
   postQuery

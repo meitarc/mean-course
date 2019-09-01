@@ -19,7 +19,12 @@ export class Postd3Component implements OnInit {
 
     ngOnInit() {
         this.postService.getTitlesD3().subscribe(d => {
+
           this.data = d.docs;
+          console.log(this.data);
+
+
+
           if (this.data.length === 0) {
                 this.show = false;
             } else {

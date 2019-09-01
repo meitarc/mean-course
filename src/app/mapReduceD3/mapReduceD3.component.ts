@@ -4,11 +4,13 @@ import { Post } from '../posts/post.model';
 
 
 @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'mapReduceD3',
     templateUrl: './mapReduceD3.component.html',
     styleUrls: ['./mapReduceD3.component.css']
 })
 
+// tslint:disable-next-line: class-name
 export class mapReduceD3Component implements OnInit {
 
     data = [];
@@ -17,9 +19,12 @@ export class mapReduceD3Component implements OnInit {
     constructor(private postService: PostsService) {}
 
     ngOnInit() {
-      this.postService.getMapReduceD3().subscribe(d => {
-          this.data = d.docs;
-          if (this.data.length === 0) {
+      this.postService.getMapReduceD3().subscribe((d: any) => {
+        this.data = d.docs.results;
+        console.log(this.data);
+
+
+        if (this.data.length === 0) {
                 this.show = false;
             } else {
                 this.show = true;

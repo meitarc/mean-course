@@ -17,6 +17,8 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
 import { AgmCoreModule } from '@agm/core';
 import { MapMdoule } from './map/map.mdoule';
 import { PiechartDirective } from './d3-graph/piechart.directive';
+import { PiechartDirectiveMap } from './‏‏d3-graph-mapreduce/piechart.directive';
+
 import { Postd3Component } from './postd3/postd3.component';
 
 import {WebSocketModule} from './web-socket/web.socket.module';
@@ -28,6 +30,7 @@ import { mapReduceD3Component } from './mapReduceD3/mapReduceD3.component';
     HeaderComponent,
     ErrorComponent,
     PiechartDirective,
+    PiechartDirectiveMap,
     Postd3Component,
     mapReduceD3Component
   ],

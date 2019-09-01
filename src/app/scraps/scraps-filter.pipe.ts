@@ -1,3 +1,4 @@
+
 import {PipeTransform, Pipe, OnInit} from '@angular/core';
 import {Scrap} from './scrap.model';
 
@@ -8,11 +9,12 @@ import {Scrap} from './scrap.model';
 export class ScrapFilterPipe implements PipeTransform {
 
     transform(posts: Scrap[], searchTerm: string): Scrap[] {
+        const AhoCorasick = require('ahocorasick');
+
         if (!posts || !searchTerm) {
             return posts;
         }
 
-        const AhoCorasick = require('ahocorasick');
         searchTerm = searchTerm.toLowerCase();
         let matches = [];
 
