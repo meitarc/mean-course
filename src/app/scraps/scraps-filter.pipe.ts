@@ -1,14 +1,15 @@
 
 import {PipeTransform, Pipe, OnInit} from '@angular/core';
 import {Scrap} from './scrap.model';
+declare var require: any;
 
 @Pipe({
     name: 'ScrapFilter'
 })
-
 export class ScrapFilterPipe implements PipeTransform {
 
     transform(posts: Scrap[], searchTerm: string): Scrap[] {
+
         const AhoCorasick = require('ahocorasick');
 
         if (!posts || !searchTerm) {
@@ -16,13 +17,13 @@ export class ScrapFilterPipe implements PipeTransform {
         }
 
         searchTerm = searchTerm.toLowerCase();
-        let matches = [];
+        const matches = [];
 
 
         posts.forEach(post => {
-          let postStr = post.title.toLowerCase() + post.summery.toLowerCase() + post.director;
+          const postStr = post.title.toLowerCase() + post.summery.toLowerCase() + post.director;
 
-          let splitedStr = postStr.split(/(?:,| )+/);
+          const splitedStr = postStr.split(/(?:,| )+/);
 
           // console.log('splitedstr: ' + splitedStr);
 
