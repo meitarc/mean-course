@@ -3,10 +3,6 @@ cheerio = require('cheerio');
 fs = require('fs');
 
 request("https://news.ycombinator.com/news", function(error, response, body) {
-  if(error) {
-    console.log("Error: " + error);
-  }
-  console.log("Status code: " + response.statusCode);
 
   $ = cheerio.load(body);
 

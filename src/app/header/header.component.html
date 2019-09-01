@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <span>
-      <a routerLink="/">MyMessages</a>
+      <a routerLink="/">Post List</a>
     </span>
     <span class="spacer"></span>
     <ul>
@@ -24,7 +24,7 @@
           <a mat-button routerLink="d3" routerLinkActive="mat-accent">D3</a>
       </li>
       <li>
-        <a mat-button routerLink="mapReduceD3" routerLinkActive="mat-accent">mapReduceD3</a>
+        <a mat-button routerLink="mapReduceD3" routerLinkActive="mat-accent">D3 using mapReduce</a>
       </li>
       <li>
         <a mat-button routerLink="scraps" routerLinkActive="mat-accent">Scraps</a>
@@ -32,6 +32,5 @@
       <li *ngIf="userIsAuth">
         <a mat-button routerLink="/chat" routerLinkActive="mat-accent">Chat</a>
       </li>
-<!-- && authService.getUserNameFromLogin()[1] -->
     </ul>
   </mat-toolbar>

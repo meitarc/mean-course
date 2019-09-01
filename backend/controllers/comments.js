@@ -2,7 +2,6 @@ const Comment = require("../models/comment");
 
 exports.createComment = (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
-  //today = new Date();
   const comment = new Comment({
     postId: req.body.postId,
     title: req.body.title,

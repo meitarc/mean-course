@@ -21,9 +21,6 @@ export class mapReduceD3Component implements OnInit {
     ngOnInit() {
       this.postService.getMapReduceD3().subscribe((d: any) => {
         this.data = d.docs.results;
-        console.log(this.data);
-
-
         if (this.data.length === 0) {
                 this.show = false;
             } else {

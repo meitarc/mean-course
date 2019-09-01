@@ -22,18 +22,12 @@ urlEnd = '/';
 
 for (index = 0;index < 200 ;index++) {
 request(urlToScrap + String(urlMid + index) + urlEnd, function(error, response, body) {
-  if(error) {
-    //console.log("Error: ");
-  }
-  //console.log("Status code: ");
 
   $ = cheerio.load(body);
 
   title = new String($('.title_wrapper > h1').text().split('(')[0]);
   if ($('.title_wrapper > h1').text().split('(')[1] == undefined){
     year = 'undefined';
-    //console.log('Year Undefined');
-
   }
   else {
     year = new String($('.title_wrapper > h1').text().split('(')[1].split(')')[0]);
@@ -46,17 +40,8 @@ request(urlToScrap + String(urlMid + index) + urlEnd, function(error, response, 
   director = new String($('.credit_summary_item > a').first('Director').text());
 
 
-
-  // console.log(title);
-  // console.log(year);
-  // console.log(summery);
-  // console.log(len);
-  // console.log(director);
-
-
  if (String(summery).includes('Add a Plot')) {
   summery = "No Summery Exists";
-  //console.log('changed to: ' + summery);
 }
 
   scraper = new Scraper({
@@ -66,25 +51,11 @@ request(urlToScrap + String(urlMid + index) + urlEnd, function(error, response, 
     len: len,
     director: director
   });
-  // console.log('test1');
 
   scraper.save().then(result => {
-     console.log('saved the information.');
-    // res.status(201).json({
-      //message: "scrap created!",
-      //result: result
-    //});
   })
   .catch(err => {
-    //res.status(500).json({
-     // message: 'Invalid authntication credintials!'
-
-    //});
-    console.log('Error');
-
   });
-
-  // fs.appendFileSync('scrapedSite.txt',body);
   });
 }
 

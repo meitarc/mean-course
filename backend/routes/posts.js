@@ -15,7 +15,7 @@ router.get("/sketch", PostController.getCMS);
 
 router.get("/d3title", PostController.getpostTitleD3);
 
-router.get("/d3Reduce", PostController.getpostSomethingD3);
+router.get("/d3Reduce", PostController.getpostTitleD3MapReduce);
 
 router.get("/maps",PostController.getAllPosts);
 

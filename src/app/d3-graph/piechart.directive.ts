@@ -63,7 +63,7 @@ export class PiechartDirective implements OnInit {
           .style('fill', (d: any) => this.color(d.data._id));
         g.append('text').attr('transform', (d: any) => 'translate(' + this.labelArc.centroid(d) + ')')
           .attr('dy', '.35em')
-          .text((d: any) => (d.data._id + ' ' + d.data.count));
+          .text((d: any) => (d.data._id + ': ' + d.data.count));
 
       }
 

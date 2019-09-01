@@ -42,7 +42,6 @@ export class MapComponent implements OnInit {
     this.markers = other_array;
   }
   clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`);
   }
 
 }

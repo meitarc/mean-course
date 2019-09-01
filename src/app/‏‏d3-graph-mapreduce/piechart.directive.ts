@@ -7,6 +7,7 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
     selector: '[appPiechartMap]'
 })
 
+// tslint:disable-next-line: directive-class-suffix
 export class PiechartDirectiveMap implements OnInit {
 
     @Input() data: any[];
@@ -63,7 +64,7 @@ export class PiechartDirectiveMap implements OnInit {
           .style('fill', (d: any) => this.color(d.data._id));
         g.append('text').attr('transform', (d: any) => 'translate(' + this.labelArc.centroid(d) + ')')
           .attr('dy', '.35em')
-          .text((d: any) => (d.data._id + ' ' + d.data.value));
+          .text((d: any) => (d.data._id + ': ' + d.data.value));
 
       }
 
