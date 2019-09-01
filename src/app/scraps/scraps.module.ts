@@ -6,10 +6,12 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { ScrapFilterPipe } from './scraps-filter.pipe';
 
 @NgModule({
   declarations: [
     ScrapListComponent,
+    ScrapFilterPipe
   ],
   imports: [
     CommonModule,

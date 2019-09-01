@@ -1,7 +1,11 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchStr"/>
+</div>
+
 <mat-accordion multi="true" *ngIf="scraps.length > 0 && !isLoading">
-  <mat-expansion-panel *ngFor="let scrap of scraps.slice().reverse()">
+  <mat-expansion-panel *ngFor="let scrap of scraps.slice().reverse() | ScrapFilter:searchStr">
     <mat-expansion-panel-header>
       {{ scrap.title }}
     </mat-expansion-panel-header>

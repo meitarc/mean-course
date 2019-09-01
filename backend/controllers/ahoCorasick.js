@@ -6,8 +6,24 @@ subStr1 = new String('iqwbdc7');
 subStr2 = new String('ahwbakh');
 subStr3 = new String('8gn87G7O8G8OGYUG68to845256156156321653156321r52631v506310r56w1t56w1');
 
-var ac = new AhoCorasick(['keyword1', 'keyword2', 'etc']);
-var results = ac.search('should find keyword1 at position 19 and keyword2 at position 47. etc');
+// var ac = new AhoCorasick(['keyword1', 'keyword2', 'etc']);
 
-console.log(results);
+// var results = ac.search('test should find keyword1 at position 19 and keyword2 at position 47. etc');
+
+strArr = [];
+strArr.push(['Holiday'.toLowerCase(), 'testing']);
+strArr.push(['peepee','poo']);
+strArr.forEach(str => {
+  // console.log(str);
+
+  var ac = new AhoCorasick(str);
+  var results = ac.search('   holiday the testing'.toLowerCase());
+
+  // var results = ac.search('nothing');
+  if(results.length == 0){
+    results = 'nothing';
+  }
+  console.log('results are: ' + results);
+});
+
 

@@ -18,13 +18,14 @@ export class ScrapListComponent implements OnInit, OnDestroy {
   scraps: Scrap[] = [];
   isLoading = false;
   totoalScraps = 0;
-  scrapsPerPage = 100;
+  scrapsPerPage = 200;
   currentPage = 1;
-  pageSizeOptions = [1, 2, 5, 10, 50, 100];
+  pageSizeOptions = [1, 2, 5, 10, 50, 100, 150, 200];
   userIsAuth = false;
   userId: string;
   private scrapsSub: Subscription;
   private authStateusSub: Subscription;
+  searchStr: string;
 
   constructor(public scrapsService: ScrapsService, private authService: AuthService) { }
 
@@ -65,4 +66,7 @@ export class ScrapListComponent implements OnInit, OnDestroy {
     this.scrapsSub.unsubscribe();
     this.authStateusSub.unsubscribe();
   }
+
+
+
 }
