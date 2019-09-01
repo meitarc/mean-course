@@ -22,7 +22,7 @@ export class ScrapFilterPipe implements PipeTransform {
 
           let splitedStr = postStr.split(/(?:,| )+/);
 
-          console.log('splitedstr: ' + splitedStr);
+          // console.log('splitedstr: ' + splitedStr);
 
           const ac = new AhoCorasick(splitedStr);
           const result = ac.search(searchTerm);
