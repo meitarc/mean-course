@@ -48,7 +48,7 @@ export class CommentsService {
   }
 
   getComment(id: string) {
-    return this.http.get<{ _id: string, title: string, content: string, creator: string, postId: string}>(
+    return this.http.get<{ _id: string, title: string, content: string, creator: string, postId: string }>(
       BACKEND_URL + id
     );
   }
@@ -73,10 +73,10 @@ export class CommentsService {
     let commentDate: Comment | FormData;
     commentDate = new FormData();
 
-    commentDate = { id, title, content, creator: null, postId: null, userName: null, commentDate: null};
+    commentDate = { id, title, content, creator: null, postId: null, userName: null, commentDate: null };
 
     this.http
-      .put(BACKEND_URL +  id, commentDate)
+      .put(BACKEND_URL + id, commentDate)
       .subscribe(response => {
         this.router.navigate(['/']);
       });
@@ -84,6 +84,6 @@ export class CommentsService {
   }
 
   deleteComment(commentId: string) {
-    return this.http.delete(BACKEND_URL +  commentId);
+    return this.http.delete(BACKEND_URL + commentId);
   }
 }

@@ -28,4 +28,4 @@ import { postImageFilterPipe } from './post-Image-filter.pipe';
   ]
 })
 
-export class PostsModule {}
+export class PostsModule { }

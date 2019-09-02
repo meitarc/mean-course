@@ -4,7 +4,6 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { CommentsService } from '../comments.service';
 import { Comment } from '../comment.model';
-import { mimeType } from './mime-type.validator';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 

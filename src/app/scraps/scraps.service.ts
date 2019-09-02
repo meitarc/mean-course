@@ -50,7 +50,7 @@ export class ScrapsService {
 
   getScrap(id: string) {
     // tslint:disable-next-line: max-line-length
-    return this.http.get<{ _id: string, title: string, year: string, summery: string, len: string, director: string}>(
+    return this.http.get<{ _id: string, title: string, year: string, summery: string, len: string, director: string }>(
       BACKEND_URL + id
     );
   }

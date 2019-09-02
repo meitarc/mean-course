@@ -33,7 +33,7 @@ export class CommentListComponent implements OnInit, OnDestroy {
   searchTermByContent: string;
 
   firstTime = true;
-  constructor(public commentsService: CommentsService, public route: ActivatedRoute, private authService: AuthService) {}
+  constructor(public commentsService: CommentsService, public route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -62,8 +62,8 @@ export class CommentListComponent implements OnInit, OnDestroy {
   loadComments() {
     let bool = false;
     this.commentsService.getComments(this.commentsPerPage, this.currentPage);
-    for ( const c of this.comments ) {
-      if ( c.postId === this.postId ) {
+    for (const c of this.comments) {
+      if (c.postId === this.postId) {
         for (const c2 of this.commentsOfPost) {
           if (c2.id === c.id) {
             bool = true;

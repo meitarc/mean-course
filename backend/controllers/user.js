@@ -66,27 +66,3 @@ exports.userLogin = (req, res, next) => {
       });
     });
 };
-
-exports.getCountries = (req,res,next)=>{
-  markers = [
-    {
-      lat: 51.673858,
-      lng: 7.815982,
-      label: 'A',
-      draggable: false
-    },
-    {
-      lat: 51.373858,
-      lng: 7.215982,
-      label: 'B',
-      draggable: false
-    },
-    {
-      lat: 51.723858,
-      lng: 7.895982,
-      label: 'C',
-      draggable: false
-    }
-  ];
-  return res.status(200).json({"countries":markers});
-};

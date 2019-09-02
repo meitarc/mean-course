@@ -1,24 +1,25 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search By Title" [(ngModel)]="searchTermByTitle"/>
-    <input type="text" class="form-control" placeholder="Search By Content" [(ngModel)]="searchTermByContent"/>
+  <input type="text" class="form-control" placeholder="Search By Title" [(ngModel)]="searchTermByTitle" />
+  <input type="text" class="form-control" placeholder="Search By Content" [(ngModel)]="searchTermByContent" />
 </div>
 <mat-accordion multi="true" *ngIf="commentsOfPost.length > 0 && !isLoading">
 
-  <mat-expansion-panel *ngFor="let comment of commentsOfPost.slice().reverse() | commentTitleFilter:searchTermByTitle | commentContentFilter:searchTermByContent">
+  <mat-expansion-panel
+    *ngFor="let comment of commentsOfPost.slice().reverse() | commentTitleFilter:searchTermByTitle | commentContentFilter:searchTermByContent">
 
-      <mat-expansion-panel-header>
-        {{ comment.title }}
-      </mat-expansion-panel-header>
-      <mat-panel-description>
-        Commented By: {{ comment.userName }} ,On: {{ comment.commentDate }}
-      </mat-panel-description>
-      <p>{{ comment.content }}</p>
+    <mat-expansion-panel-header>
+      {{ comment.title }}
+    </mat-expansion-panel-header>
+    <mat-panel-description>
+      Commented By: {{ comment.userName }} ,On: {{ comment.commentDate }}
+    </mat-panel-description>
+    <p>{{ comment.content }}</p>
 
-      <mat-action-row *ngIf="userIsAuth && userId == comment.creator">
-        <a mat-button color="primary" [routerLink]="['/comments/edit', comment.id]">EDIT</a>
-        <button mat-button color="warn" (click)="onDelete(comment.id)">DELETE</button>
-      </mat-action-row>
+    <mat-action-row *ngIf="userIsAuth && userId == comment.creator">
+      <a mat-button color="primary" [routerLink]="['/comments/edit', comment.id]">EDIT</a>
+      <button mat-button color="warn" (click)="onDelete(comment.id)">DELETE</button>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
 

@@ -1,7 +1,7 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
 <div class="form-group">
-  <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchStr"/>
+  <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchStr" />
 </div>
 
 <mat-accordion multi="true" *ngIf="scraps.length > 0 && !isLoading">
@@ -12,11 +12,11 @@
     <p>
       Year: {{ scrap.year }}<br>
       Summery: {{ scrap.summery }}<br>
-    Len: {{ scrap.len }}<br>
+      Len: {{ scrap.len }}<br>
       Director: {{scrap.director}}
     </p>
 
-    </mat-expansion-panel>
+  </mat-expansion-panel>
 </mat-accordion>
 <mat-paginator [length]="totoalScraps" [pageSize]="scrapsPerPage" [pageSizeOptions]="pageSizeOptions"
   (page)="onChangePage($event)" *ngIf="scraps.length > 0"></mat-paginator>

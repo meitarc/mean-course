@@ -26,7 +26,7 @@ exports.createComment = (req, res, next) => {
     });
 };
 
-exports.updateComment=(req, res, next) => {
+exports.updateComment = (req, res, next) => {
   const comment = new Comment({
     _id: req.body.id,
     title: req.body.title,
@@ -34,22 +34,25 @@ exports.updateComment=(req, res, next) => {
     creator: req.userData.userId,
     userName: req.userData.email.split('@')[0],
   });
-  Comment.updateOne( {_id: req.params.id, creator: req.userData.userId}, comment).then(result => {
-    if (result.n > 0) {
-      res.status(200).json({
-        message: "Update successful!"
+  Comment.updateOne({
+      _id: req.params.id,
+      creator: req.userData.userId
+    }, comment).then(result => {
+      if (result.n > 0) {
+        res.status(200).json({
+          message: "Update successful!"
+        });
+      } else {
+        res.status(401).json({
+          message: "Not authorized!"
+        });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Couldn't update comment!"
       });
-    } else {
-      res.status(401).json({
-        message: "Not authorized!"
-      });
-    }
-  })
-  .catch(error => {
-    res.status(500).json({
-      message: "Couldn't update comment!"
-    });
-  });;
+    });;
 
 }
 

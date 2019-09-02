@@ -143,8 +143,4 @@ export class AuthService {
       email
     };
   }
-
-  getcountries() {
-    return this.http.get<{ countries: any[] }>(BACKEND_URL + 'countries');
-  }
 }

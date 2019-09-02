@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CommentCreateComponent } from './comment-create/comment-create.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
@@ -26,4 +26,4 @@ import { CommentTitleFilterPipe } from './comment-title-filter.pipe';
   ]
 })
 
-export class CommentsModule {}
+export class CommentsModule { }

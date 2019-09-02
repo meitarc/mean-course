@@ -37,7 +37,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     this.getPosition().then(pos => {
       this.latitude = String(pos.lat);
       this.longitude = String(pos.lng);
-     });
+    });
 
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(authStatus => {
       this.isLoading = false;
@@ -99,19 +99,19 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   }
 
   onSavePost() {
-     if (this.form.value.title == null || this.form.value.content == null ||
-       this.form.value.title === '' || this.form.value.content === '') {
+    if (this.form.value.title == null || this.form.value.content == null ||
+      this.form.value.title === '' || this.form.value.content === '') {
       return;
-     }
-     this.isLoading = true;
+    }
+    this.isLoading = true;
 
-     this.getPosition().then(pos => {
-       this.latitude = String(pos.lat);
-       this.longitude = String(pos.lng);
-      });
+    this.getPosition().then(pos => {
+      this.latitude = String(pos.lat);
+      this.longitude = String(pos.lng);
+    });
 
 
-     if (this.mode === 'create') {
+    if (this.mode === 'create') {
 
       this.postsService.addPost(
         this.form.value.title,
@@ -133,7 +133,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         this.longitude
       );
     }
-     this.form.reset();
+    this.form.reset();
   }
 
   ngOnDestroy(): void {
@@ -145,10 +145,10 @@ export class PostCreateComponent implements OnInit, OnDestroy {
 
       navigator.geolocation.getCurrentPosition(resp => {
 
-          resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
-        },
+        resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
+      },
         err => {
-          resolve({lng: null, lat: null});
+          resolve({ lng: null, lat: null });
         });
     });
 

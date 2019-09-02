@@ -29,9 +29,6 @@ export class MapComponent implements OnInit {
     const other_array: any[] = [];
     this.lat = 32.2912256;
     this.lng = 34.873344;
-
-
-
     this.postlocation.newGetAll().subscribe((d: any) => {
       d.posts.forEach(element => {
         const mark: Marker = { lat: element.latitude, lng: element.longitude, label: element.title, draggable: false };

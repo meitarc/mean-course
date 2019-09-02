@@ -7,7 +7,7 @@ mat-spinner {
   margin: auto;
 }
 
-mat-paginator{
+mat-paginator {
   margin-top: 1rem;
 }
 
@@ -28,5 +28,5 @@ mat-paginator{
 form-control {
   width: 300px;
   border: 2px groove;
-  border-radius: 4px; 
+  border-radius: 4px;
 }

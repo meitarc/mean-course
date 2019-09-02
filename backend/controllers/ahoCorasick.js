@@ -8,15 +8,13 @@ subStr3 = new String('8gn87G7O8G8OGYUG68to845256156156321653156321r52631v506310r
 
 strArr = [];
 strArr.push(['Holiday'.toLowerCase(), 'testing']);
-strArr.push(['peepee','poo']);
+strArr.push(['peepee', 'poo']);
 strArr.forEach(str => {
 
   var ac = new AhoCorasick(str);
   var results = ac.search('   holiday the testing'.toLowerCase());
 
-  if(results.length == 0){
+  if (results.length == 0) {
     results = 'nothing';
   }
 });
-
-

@@ -21,7 +21,7 @@ import { PiechartDirectiveMap } from './‏‏d3-graph-mapreduce/piechart.direct
 
 import { Postd3Component } from './postd3/postd3.component';
 
-import {WebSocketModule} from './web-socket/web.socket.module';
+import { WebSocketModule } from './web-socket/web.socket.module';
 import { mapReduceD3Component } from './mapReduceD3/mapReduceD3.component';
 
 @NgModule({

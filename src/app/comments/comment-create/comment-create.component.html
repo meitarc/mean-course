@@ -8,7 +8,7 @@
 
     <mat-form-field>
       <textarea matInput rows="4" formControlName="content" placeholder="Comment Content"></textarea>
-      <mat-error *ngIf="form.get('content').invalid">Please enter a comment title.</mat-error>
+      <mat-error *ngIf="form.get('content').invalid">Please enter a comment description.</mat-error>
     </mat-form-field>
     <button mat-raised-button color="accent" type="submit">Save Comment</button>
   </form>

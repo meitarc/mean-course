@@ -11,7 +11,7 @@ import { MapComponent } from './map/map-google/map.component';
 import { Postd3Component } from './postd3/postd3.component';
 import { ScrapListComponent } from './scraps/scrap-list/scrap-list.component';
 
-import {ChatComponent} from './web-socket/socket-io/chat.component';
+import { ChatComponent } from './web-socket/socket-io/chat.component';
 import { mapReduceD3Component } from './mapReduceD3/mapReduceD3.component';
 
 const routes: Routes = [
@@ -23,14 +23,14 @@ const routes: Routes = [
   { path: 'comments/create/:postid', component: CommentCreateComponent, canActivate: [AuthGuard] },
   { path: 'comments/edit/:commentId', component: CommentCreateComponent, canActivate: [AuthGuard] },
 
-  { path: 'scraps', component:  ScrapListComponent },
+  { path: 'scraps', component: ScrapListComponent },
 
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
   { path: 'map', component: MapComponent },
-  { path: 'd3', component: Postd3Component},
-  { path: 'mapReduceD3', component: mapReduceD3Component},
+  { path: 'd3', component: Postd3Component },
+  { path: 'mapReduceD3', component: mapReduceD3Component },
 
-  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard]}
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] }
 
 ];
 

@@ -99,14 +99,14 @@ export class PostsService {
     } else {
 
       if (addImage) {
-        postDate = { id, title, content, imagePath: image, creator: null, userName: null, postDate: null , latitude, longitude};
+        postDate = { id, title, content, imagePath: image, creator: null, userName: null, postDate: null, latitude, longitude };
 
       } else {
-        postDate = { id, title, content, imagePath: null, creator: null, userName: null, postDate: null , latitude, longitude};
+        postDate = { id, title, content, imagePath: null, creator: null, userName: null, postDate: null, latitude, longitude };
 
       }
 
-      postDate = { id, title, content, imagePath: image, creator: null, userName: null, postDate: null , latitude, longitude};
+      postDate = { id, title, content, imagePath: image, creator: null, userName: null, postDate: null, latitude, longitude };
     }
 
     this.http

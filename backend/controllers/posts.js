@@ -1,7 +1,9 @@
 const Post = require("../models/post");
 
 const Comment = require("../models/comment");
-const { CountMinSketch } = require('bloom-filters')
+const {
+  CountMinSketch
+} = require('bloom-filters')
 
 const sketch = new CountMinSketch(0.001, 0.99);
 
@@ -170,19 +172,21 @@ exports.getpostTitleD3 = (req, res, next) => {
   })
 };
 
-exports.getpostTitleD3MapReduce =(req, res, next) => {
+exports.getpostTitleD3MapReduce = (req, res, next) => {
   var o = {}
-    o.map = function () {
-        emit(this.title, 1);
-    };
-    o.reduce = function (k, vals) {
-        return vals.length;
-    };
-
-    Post.mapReduce(o).then(docs => {
-      return res.status(200).json({docs});
-    }).catch(docs1=>{})
+  o.map = function () {
+    emit(this.title, 1);
   };
+  o.reduce = function (k, vals) {
+    return vals.length;
+  };
+
+  Post.mapReduce(o).then(docs => {
+    return res.status(200).json({
+      docs
+    });
+  }).catch(docs1 => {})
+};
 
 exports.getAllPosts = (req, res, next) => {
 
@@ -214,4 +218,3 @@ exports.getCMS = (req, res, next) => {
     doc
   });
 };
-

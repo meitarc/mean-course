@@ -22,4 +22,4 @@ import { ScrapFilterPipe } from './scraps-filter.pipe';
   ]
 })
 
-export class ScrapsModule {}
+export class ScrapsModule { }
