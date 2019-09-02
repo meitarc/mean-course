@@ -18,7 +18,6 @@ export class MapComponent implements OnInit {
   public lat: number;
   public lng: number;
   public selectedAddress: PlaceResult;
-  public country: [2];
   public markers: Marker[] = [];
   public locations: any;
   constructor(private userCountry: AuthService, private postlocation: PostsService, private router: Router) {

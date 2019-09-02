@@ -55,13 +55,6 @@ export class ScrapListComponent implements OnInit, OnDestroy {
     this.scrapsService.getScraps(this.scrapsPerPage, this.currentPage);
   }
 
-  // onDelete(scrapId: string) {
-  //  this.isLoading = true;
-  //  this.scrapsService.deleteScrap(scrapId).subscribe(() => {
-  //    this.scrapsService.getScraps(this.scrapsPerPage, this.currentPage);
-  //  });
-  // }
-
   ngOnDestroy() {
     this.scrapsSub.unsubscribe();
     this.authStateusSub.unsubscribe();
