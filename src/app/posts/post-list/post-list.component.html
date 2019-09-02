@@ -24,11 +24,13 @@
       <a mat-button color="primary" [routerLink]="['comments/list/', post.id]">Post comments</a>
 
       <div *ngIf="userIsAuth">
-        <div *ngIf="userId == post.creator">
+        <a mat-button color="primary" [routerLink]="['comments/create/', post.id]">COMMENT</a>
+
+        <a *ngIf="userId == post.creator">
           <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
           <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
-        </div>
-        <a mat-button color="primary" [routerLink]="['comments/create/', post.id]">COMMENT</a>
+        </a>
+
       </div>
     </mat-action-row>
     </mat-expansion-panel>
@@ -37,9 +39,4 @@
   (page)="onChangePage($event)" *ngIf="posts.length > 0"></mat-paginator>
 <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>
 
-<div>
-  <p>
-   <li>Current post create: {{curentCreateTimes}}</li>
-   <li>Current post delete: {{currentDeleteTimes}}</li>
-  </p>
-</div>
+<p class="form-control">Current post create: {{curentCreateTimes}}  ●   Current post delete: {{currentDeleteTimes}}</p>

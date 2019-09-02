@@ -6,7 +6,6 @@ import { PostsService } from '../posts.service';
 import { PageEvent } from '@angular/material';
 import { AuthService } from 'src/app/auth/auth.service';
 
-
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
@@ -31,7 +30,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   searchTermByContent: string;
   searchTermByimage = true;
 
-
   constructor(public postsService: PostsService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -55,7 +53,6 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.curentCreateTimes = d.doc[0];
       this.currentDeleteTimes = d.doc[1];
     });
-
   }
 
   onChangePage(pageData: PageEvent) {
