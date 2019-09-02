@@ -22,8 +22,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   pageSizeOptions = [1, 2, 5, 10, 50, 100];
   userIsAuth = false;
   userId: string;
-  curentCreateTimes: number;
-  currentDeleteTimes: number;
+  curentCreateTimes: 0;
+  currentDeleteTimes: 0;
   private postsSub: Subscription;
   private authStateusSub: Subscription;
   searchTermByTitle: string;
