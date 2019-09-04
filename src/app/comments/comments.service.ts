@@ -15,7 +15,7 @@ export class CommentsService {
   private commentsUpdated = new Subject<{ comments: Comment[], commentCount: number }>();
 
   constructor(private http: HttpClient, private router: Router) { }
-
+// get comment by currentPage
   getComments(commentsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${commentsPerPage}&page=${currentPage}`;
     this.http.get<{ message: string, comments: any, maxComments: number }>(
@@ -52,7 +52,7 @@ export class CommentsService {
       BACKEND_URL + id
     );
   }
-
+// add comment data
   addComment(postId: string, title: string, content: string) {
     const commentDate = new FormData();
     commentDate.append('postId', postId);

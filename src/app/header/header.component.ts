@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuth = false;
   private authListenerSubs: Subscription;
   constructor(private authService: AuthService) { }
-  admin = 'meitarc';
+  admin = 'meitarc'; // the admin username
   username = '';
   isAdmin = false;
   ngOnInit() {
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.checkAdmin();
   }
-  checkAdmin() {
+  checkAdmin() { // check if the admin is connected
     this.username = this.authService.getUserName();
     if (this.admin === this.username) {
       this.isAdmin = true;

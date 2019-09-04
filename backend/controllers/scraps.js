@@ -1,5 +1,5 @@
 const Scrap = require("../models/‏‏scrap");
-
+//get all the scraps
 exports.getScraps = (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
@@ -26,7 +26,7 @@ exports.getScraps = (req, res, next) => {
       });
     });
 };
-
+//get scrap by id
 exports.getScrap = (req, res, next) => {
   Scrap.findById(req.params.id).then(scrap => {
     if (scrap) {

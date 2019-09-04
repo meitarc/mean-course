@@ -1,5 +1,6 @@
 const Comment = require("../models/comment");
 
+//creat comment function
 exports.createComment = (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   const comment = new Comment({
@@ -26,6 +27,7 @@ exports.createComment = (req, res, next) => {
     });
 };
 
+//update comment function
 exports.updateComment = (req, res, next) => {
   const comment = new Comment({
     _id: req.body.id,

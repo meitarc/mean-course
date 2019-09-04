@@ -77,7 +77,7 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
 
-    if (this.mode === 'create') {
+    if (this.mode === 'create') {// check if create or update
       this.commentsService.addComment(
         this.postId,
         this.form.value.title,

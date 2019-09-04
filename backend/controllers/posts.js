@@ -6,14 +6,14 @@ const {
 } = require('bloom-filters')
 
 const sketch = new CountMinSketch(0.001, 0.99);
-
+//creat post function
 exports.createPost = (req, res, next) => {
 
   const url = req.protocol + "://" + req.get("host");
 
   today = new Date();
   img = null
-  if (!(req.file == null)) {
+  if (!(req.file == null)) {//check if the user set a image
     img = url + "/images/" + req.file.filename;
   }
   sketch.update('create');
@@ -43,7 +43,7 @@ exports.createPost = (req, res, next) => {
       });
     });
 };
-
+//update post function
 exports.updatePost = (req, res, next) => {
 
   let imagePath = req.body.imagePath;
@@ -145,7 +145,7 @@ exports.deletePost = (req, res, next) => {
       message: "Fetching post failed!"
     });
   });
-
+//delete the comments of the post
   Comment.deleteMany({
     postId: req.params.id,
   }).then(result => {
@@ -156,7 +156,7 @@ exports.deletePost = (req, res, next) => {
     }
   }).catch(error => {});
 };
-
+//group by of the posts titles to d3 graph
 exports.getpostTitleD3 = (req, res, next) => {
   Post.aggregate([{
     "$group": {
@@ -171,7 +171,7 @@ exports.getpostTitleD3 = (req, res, next) => {
     });
   })
 };
-
+//count the posts titles using mapReduce to d3 graph
 exports.getpostTitleD3MapReduce = (req, res, next) => {
   var o = {}
   o.map = function () {
@@ -209,11 +209,10 @@ exports.getAllPosts = (req, res, next) => {
       });
     });
 };
-
+//return the sketch counter
 exports.getCMS = (req, res, next) => {
 
   doc = [sketch.count('create'), doc = sketch.count('delete')];
-
   return res.status(200).json({
     doc
   });

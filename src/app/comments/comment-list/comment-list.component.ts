@@ -16,7 +16,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 export class CommentListComponent implements OnInit, OnDestroy {
 
-  comments: Comment[] = [];
+  comments: Comment[] = []; // comments array
   commentsOfPost: Comment[] = [];
 
   isLoading = false;
@@ -58,7 +58,7 @@ export class CommentListComponent implements OnInit, OnDestroy {
       this.postId = paramMap.get('postid');
     });
   }
-
+// get all comments
   loadComments() {
     let bool = false;
     this.commentsService.getComments(this.commentsPerPage, this.currentPage);

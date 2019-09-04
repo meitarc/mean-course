@@ -4,6 +4,7 @@ import { PipeTransform, Pipe } from '@angular/core';
 @Pipe({
   name: 'commentTitleFilter'
 })
+// filter comments by title
 
 export class CommentTitleFilterPipe implements PipeTransform {
   transform(comments: Comment[], searchTerm: string): Comment[] {

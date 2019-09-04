@@ -26,10 +26,10 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     // tslint:disable-next-line: variable-name
     const other_array: any[] = [];
-    this.lat = 32.2912256;
+    this.lat = 32.2912256; // the default map location
     this.lng = 34.873344;
     this.postlocation.newGetAll().subscribe((d: any) => {
-      d.posts.forEach(element => {
+      d.posts.forEach(element => { // coollect the posts markers
         const mark: Marker = { lat: element.latitude, lng: element.longitude, label: element.title, draggable: false };
         other_array.push(mark);
       });
