@@ -1,4 +1,12 @@
 # MeanCourse
+Web application using Angular, Node.js and MongoDB
+
+<img src="https://github.com/meitarc/mean-course/blob/master/images/posts%20list.jpg" width="1000">
+<img src="https://github.com/meitarc/mean-course/blob/master/images/post%20view.jpg" width="1000">
+<img src="https://github.com/meitarc/mean-course/blob/master/images/posts%20location.jpg" width="1000">
+<img src="https://github.com/meitarc/mean-course/blob/master/images/d3%20pie%20chart.jpg" width="1000">
+<img src="https://github.com/meitarc/mean-course/blob/master/images/chat2.jpg" width="1000">
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
