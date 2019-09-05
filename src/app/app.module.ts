@@ -49,7 +49,7 @@ import { mapReduceD3Component } from './mapReduceD3/mapReduceD3.component';
     WebSocketModule,
 
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAYepYkwL_TN6WFKiUcheiKuGSIqqy_1aQ'
+      apiKey: ''
     })
   ],
   providers: [
